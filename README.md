@@ -1,15 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Texas A&M CSCE 431 Software Engineering project by team JPLEC, which is aptly named after members Josh, Priscilla, Luke, Emmanuel, and Caroline. 
 
-Things you may want to cover:
+General Specs:
 
-* Ruby version
+* ruby-3.0.2
 
-* System dependencies
+* PSQL
 
-* Configuration
+Things still to cover:
 
 * Database creation
 
@@ -17,20 +16,18 @@ Things you may want to cover:
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+Local Deployment Instructions:
 
-* Local Deployment Instructions. Run Docker image by executing:
+1. docker run --rm -it --volume "${PWD}:/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest 
 
-    1. docker run --rm -it --volume "${PWD}:/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest 
+2. cd csce431
 
-    2. cd csce431
+3. bundle install
 
-    3. bundle install
+4. rails db:create
 
-    4. rails db:create
+5. rails db:migrate
 
-    5. rails db:migrate
+6. rails server --binding=0.0.0.0
 
-    6. rails server --binding=0.0.0.0
-
-    7. http://127.0.0.1:3000
+7. http://127.0.0.1:3000
