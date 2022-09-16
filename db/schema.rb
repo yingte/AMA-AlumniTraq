@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_16_203251) do
+ActiveRecord::Schema.define(version: 2022_09_16_214028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alumni", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "bio"
+    t.string "job_title"
+    t.string "employer"
+    t.text "availability"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_alumni_on_user_id"
+  end
+
+  create_table "media_handles", force: :cascade do |t|
+    t.bigint "alumnus_id", null: false
+    t.string "platform"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["alumnus_id"], name: "index_media_handles_on_alumnus_id"
+  end
 
   create_table "permissions", force: :cascade do |t|
     t.string "name"
@@ -34,4 +54,20 @@ ActiveRecord::Schema.define(version: 2022_09_16_203251) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "major"
+    t.integer "graduation_year"
+    t.string "email"
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  add_foreign_key "alumni", "users"
+  add_foreign_key "media_handles", "alumni"
+  add_foreign_key "users", "roles"
 end

@@ -1,0 +1,42 @@
+<%= form_with(model: alumnus) do |form| %>
+  <% if alumnus.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(alumnus.errors.count, "error") %> prohibited this alumnus from being saved:</h2>
+
+      <ul>
+        <% alumnus.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_area :bio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_title %>
+    <%= form.text_field :job_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employer %>
+    <%= form.text_field :employer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :availability %>
+    <%= form.text_area :availability %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
