@@ -8,6 +8,8 @@ General Specs:
 
 * PSQL
 
+* Docker recommended if running locally on Windows machine.
+
 Things still to cover:
 
 * Database creation
@@ -16,7 +18,7 @@ Things still to cover:
 
 * How to run the test suite
 
-Local Deployment Instructions:
+Local Deployment Instructions. Execute the following in terminal:
 
 1. docker run --rm -it --volume "${PWD}:/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest 
 
@@ -30,4 +32,4 @@ Local Deployment Instructions:
 
 6. rails server --binding=0.0.0.0
 
-7. http://127.0.0.1:3000
+7. Search http://127.0.0.1:3000 in browser.
