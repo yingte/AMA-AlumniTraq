@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :event_attendees
+  resources :events
   resources :media_handles
   resources :alumni
   resources :users
