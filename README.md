@@ -1,6 +1,6 @@
 # README
 
-Texas A&M CSCE 431 Software Engineering project by team JPLEC, which is aptly named after members Josh, Priscilla, Luke, Emmanuel, and Caroline. 
+Texas A&M CSCE 431 Software Engineering project by team JPLEC, which is aptly named after members Josh, Priscilla, Luke, Emmanuel, and Caroline. This is the minimum viable product.
 
 General Specs:
 
