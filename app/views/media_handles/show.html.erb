@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Alumnus:</strong>
+  <%= @media_handle.alumnus_id %>
+</p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @media_handle.platform %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @media_handle.link %>
+</p>
+
+<%= link_to 'Edit', edit_media_handle_path(@media_handle) %> |
+<%= link_to 'Back', media_handles_path %>

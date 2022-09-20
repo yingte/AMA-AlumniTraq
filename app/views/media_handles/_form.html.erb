@@ -1,0 +1,32 @@
+<%= form_with(model: media_handle) do |form| %>
+  <% if media_handle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(media_handle.errors.count, "error") %> prohibited this media_handle from being saved:</h2>
+
+      <ul>
+        <% media_handle.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :alumnus_id %>
+    <%= form.text_field :alumnus_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :platform %>
+    <%= form.text_field :platform %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
