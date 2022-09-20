@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "users#index"
+
   resources :event_attendees
   resources :events
   resources :media_handles
