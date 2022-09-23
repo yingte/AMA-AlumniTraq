@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <!-- This puts the navbar on each page -->
+        <li><%= link_to 'Directory', '/' %></li>
+        <li><%= link_to 'Calendar', '/events' %></li>
+        <!-- Put Admin if role == admin -->
+        <li><%= link_to 'Settings', '/settings' %></li>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
