@@ -42,4 +42,11 @@
   <%= @alumnus_info.availability %>
 </p>
 
+<% @alumnus_handles.each do |handle| %>
+  <p>
+    <strong><% handle.platform %>L</strong>
+    <%= link_to(handle.link, handle.link) %>
+  </p>
+<% end %>
+
 <%= link_to 'Back', '/directory' %>
