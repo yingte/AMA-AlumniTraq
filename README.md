@@ -1,6 +1,6 @@
 # README
 
-Texas A&M CSCE 431 Software Engineering project by team JPLEC, which is aptly named after members Josh, Priscilla, Luke, Emmanuel, and Caroline. 
+Texas A&M CSCE 431 Software Engineering project by team JPLEC, which is aptly named after members Josh, Priscilla, Luke, Emmanuel, and Caroline. This is the minimum viable product.
 
 General Specs:
 
@@ -30,6 +30,8 @@ Local Deployment Instructions. Execute the following in terminal:
 
 5. rails db:migrate
 
-6. rails server --binding=0.0.0.0
+6. rails db:seed
 
-7. Search http://127.0.0.1:3000 in browser.
+7. rails server --binding=0.0.0.0
+
+8. Search http://127.0.0.1:3000 in browser.

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @alumnus.user_id %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @alumnus.bio %>
+</p>
+
+<p>
+  <strong>Job title:</strong>
+  <%= @alumnus.job_title %>
+</p>
+
+<p>
+  <strong>Employer:</strong>
+  <%= @alumnus.employer %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @alumnus.availability %>
+</p>
+
+<%= link_to 'Edit', edit_alumnus_path(@alumnus) %> |
+<%= link_to 'Back', alumni_path %>
