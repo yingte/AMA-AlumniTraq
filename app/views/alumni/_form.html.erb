@@ -11,10 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+  <% if alumnus.user %>
+    <h3><%= alumnus.user.first_name %> <%= alumnus.user.last_name %></h3>
+  <% else %>
+    <div class="field">
+      <%= form.label :user_id %>
+      <%= form.number_field :user_id %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :bio %>

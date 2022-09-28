@@ -70,12 +70,13 @@ ActiveRecord::Schema.define(version: 2022_09_16_215237) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest"
     t.bigint "role_id", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "major"
     t.integer "graduation_year"
-    t.string "email"
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
