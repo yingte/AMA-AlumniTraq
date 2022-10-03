@@ -2,5 +2,7 @@
 
 <%= form_tag search_directory_index_url, :method => 'get' do%>
   <%= text_field_tag :search, params[:search]%>
-  <%= submit_tag "Search" %>   
+  <%= submit_tag " Basic Search" %>   
 <% end %>
+
+<%= link_to "Advanced Search", new_search_path %>
