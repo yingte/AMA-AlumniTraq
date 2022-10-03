@@ -43,8 +43,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :major %>
-    <%= form.text_field :major %>
+    <%= form.label :major_name %>
+    <!-- Changed major_id to major_name -->
+    <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
   </div>
 
   <div class="field">

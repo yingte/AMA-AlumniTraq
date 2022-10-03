@@ -6,9 +6,10 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.references :role, null: false, foreign_key: true, :on_delete => :cascade
       t.string :first_name
       t.string :last_name
-      t.string :major
+      t.references :major, optional: true, foreign_key: true, :on_delete => :nullify
       t.integer :graduation_year
       t.string :phone
+      t.boolean :is_approved, :default => false
 
       t.timestamps
     end

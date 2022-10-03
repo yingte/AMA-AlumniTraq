@@ -65,6 +65,6 @@ class AlumniController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alumnus_params
-      params.require(:alumnus).permit(:user_id, :bio, :job_title, :employer, :availability)
+      params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer_id, :availability)
     end
 end

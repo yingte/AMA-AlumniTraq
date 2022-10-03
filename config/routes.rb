@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :employers
+  resources :job_categories
+  resources :majors
   root "directory#index"
 
   resources :event_attendees
@@ -6,8 +9,6 @@ Rails.application.routes.draw do
   resources :media_handles
   resources :alumni
   resources :users
-  resources :role_permissions
-  resources :permissions
   resources :roles
   resources :directory, :only => [:index, :show] do
     collection do
