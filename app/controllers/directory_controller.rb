@@ -17,8 +17,11 @@ class DirectoryController < ApplicationController
     end
 
     def show
-        @alumnus = User.find(params[:id])
-        @alumnus_info = Alumnus.where('user_id = ' + String(params[:id])).first
+        alumni_role = Role.where(name: "Alumni").first
+        @alumni = Alumnus.all       
+        @alumni_info = Alumnus.joins(:user).order('users.last_name')
+        # @alumnus = User.find(params[:id])
+        # @alumnus_info = Alumnus.where('user_id = ' + String(params[:id])).first
         #@alumnus_handles = MediaHandle.where('user_id = ' + String(params[:id]))
     end
 
