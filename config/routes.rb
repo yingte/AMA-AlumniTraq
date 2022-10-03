@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :employers
+  resources :job_categories
+  resources :majors
   root "directory#index"
 
   resources :event_attendees
@@ -6,8 +9,6 @@ Rails.application.routes.draw do
   resources :media_handles
   resources :alumni
   resources :users
-  resources :role_permissions
-  resources :permissions
   resources :roles
   resources :directory, :only => [:index, :show] do
     collection do
@@ -15,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
   resources :settings, :only => [:index]
+  
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

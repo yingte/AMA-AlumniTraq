@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @alumnus.user_id %>
+  <%= @alumnus.user.first_name %> <%= @alumnus.user.last_name %>
 </p>
 
 <p>
@@ -16,8 +16,13 @@
 </p>
 
 <p>
+  <strong>Job category:</strong>
+  <%= @alumnus.job_category.name %>
+</p>
+
+<p>
   <strong>Employer:</strong>
-  <%= @alumnus.employer %>
+  <%= @alumnus.employer.name %>
 </p>
 
 <p>
