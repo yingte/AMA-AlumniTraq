@@ -19,12 +19,11 @@ ActiveRecord::Schema.define(version: 2022_09_16_215237) do
     t.bigint "user_id", null: false
     t.text "bio"
     t.string "job_title"
-    t.bigint "job_category_id"
-    t.bigint "employer_id"
+    t.bigint "job_category_id", default: 1, null: false
+    t.string "employer"
     t.text "availability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employer_id"], name: "index_alumni_on_employer_id"
     t.index ["job_category_id"], name: "index_alumni_on_job_category_id"
     t.index ["user_id"], name: "index_alumni_on_user_id"
   end
@@ -93,7 +92,6 @@ ActiveRecord::Schema.define(version: 2022_09_16_215237) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
-  add_foreign_key "alumni", "employers"
   add_foreign_key "alumni", "job_categories"
   add_foreign_key "alumni", "users"
   add_foreign_key "media_handles", "alumni"

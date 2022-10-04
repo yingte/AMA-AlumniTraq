@@ -40,3 +40,18 @@ nav ul li {
 nav a {
     text-decoration: none;
 }
+
+nav li form input {
+    background-color: initial;
+    border:none;
+    color:#666;
+}
+  
+nav li form input:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.profile-tab {
+    padding: 0 4px;
+}

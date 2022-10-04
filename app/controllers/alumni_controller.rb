@@ -1,5 +1,7 @@
 class AlumniController < ApplicationController
   before_action :set_alumnus, only: %i[ show edit update destroy ]
+  before_action :check_authority, only: %i[ index destroy ]
+  before_action :check_alum_authority, only: %i[ show new edit create update ]
 
   # GET /alumni or /alumni.json
   def index
@@ -21,6 +23,8 @@ class AlumniController < ApplicationController
 
   # POST /alumni or /alumni.json
   def create
+    # CHANGE DEFAULT BEHAVIOR #
+    # Add functionality to create new employer if does not already exist
     @alumnus = Alumnus.new(alumnus_params)
 
     respond_to do |format|
@@ -65,6 +69,18 @@ class AlumniController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alumnus_params
-      params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer_id, :availability)
+      params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer, :availability)
+    end
+  
+    def check_alum_authority
+      if Current.user.role.id != 1 && Current.user.role.id != 3
+        respond_to do |format|
+          puts(Current.user.role.name)
+          puts(Current.user.role.id)
+          format.html { render file: "#{Rails.root}/public/401.html", :layout => false, :status => :unauthorized }
+          format.xml  { head :unauthorized }
+          format.any  { head :unauthorized }
+        end
+      end
     end
 end

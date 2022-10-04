@@ -1,11 +1,34 @@
-Role.create!([
-  {name: "Admin"},
-  {name: "Member"},
-  {name: "Alumni"},
-  {name: "Event Planner"}
+JobCategory.create!([
+  {name: "None"},
+  {name: "Accounting"},
+  {name: "Administrative"},
+  {name: "Arts and Design"},
+  {name: "Business Development"},
+  {name: "Community and Social Services"},
+  {name: "Consulting"},
+  {name: "Cybersecurity"},
+  {name: "Education"},
+  {name: "Engineering"},
+  {name: "Entrepreneurship"},
+  {name: "Finance"},
+  {name: "Healthcare Services"},
+  {name: "Human Resources"},
+  {name: "Information Technology"},
+  {name: "Legal"},
+  {name: "Marketing"},
+  {name: "Media and Communication"},
+  {name: "Military and Protective Services"},
+  {name: "Operations"},
+  {name: "Product Management"},
+  {name: "Program and Project Management"},
+  {name: "Purchasing"},
+  {name: "Quality Assurance"},
+  {name: "Real Estate"},
+  {name: "Research"},
+  {name: "Sales"},
+  {name: "Software Development"},
+  {name: "Support"}
 ])
-
-# Scrapped TAMU's catalog for every bachelor degree
 Major.create!([
   {name: "International Studies"},
   {name: "Kinesiology"},
@@ -118,4 +141,17 @@ Major.create!([
   {name: "Marine Sciences"},
   {name: "Maritime Business Administration"},
   {name: "Marine Transportation"}
+])
+Role.create!([
+  {name: "Admin"},
+  {name: "Member"},
+  {name: "Alumni"},
+  {name: "Event Planner"}
+])
+User.create!([
+  {email: "ama_alumnitraq@gmail.com", password_digest: "$2a$12$7QGh.d6D402inioBCENTnuKZTTQAksSkYpB58qnPf5K4BW3KElova", role_id: 1, first_name: "Super", last_name: "User", major_id: 67, graduation_year: 2023, phone: "", is_approved: true},
+  {email: "thegoodag@gmail.com", password_digest: "$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy", role_id: 3, first_name: "Ole", last_name: "Rock", major_id: 65, graduation_year: 1954, phone: "", is_approved: true}
+])
+Alumnus.create!([
+  {user_id: 2, bio: nil, job_title: nil, job_category_id: 1, employer: nil, availability: nil}
 ])
