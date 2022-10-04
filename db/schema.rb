@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(version: 2022_09_16_215237) do
     t.index ["user_id"], name: "index_alumni_on_user_id"
   end
 
-  create_table "employers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "event_attendees", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
