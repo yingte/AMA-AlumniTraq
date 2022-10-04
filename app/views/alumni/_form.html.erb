@@ -11,10 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+  <% if alumnus.user %>
+    <h3><%= alumnus.user.first_name %> <%= alumnus.user.last_name %></h3>
+  <% else %>
+    <div class="field">
+      <%= form.label :user_id %>
+      <%= form.number_field :user_id %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :bio %>
@@ -27,8 +31,15 @@
   </div>
 
   <div class="field">
-    <%= form.label :employer %>
-    <%= form.text_field :employer %>
+    <%= form.label :job_category_id %>
+    <!-- Changed job_category_id to job_category_name -->
+    <%= form.select :job_category_id, JobCategory.order(:name).map { |job_category| [job_category.name, job_category.id] }, include_blank: false, id: "id_of_the_job_category_id_select_box" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employer_id %>
+    <!-- Changed employer_id to employer_name -->
+    <%= form.select :employer_id, Employer.order(:name).map { |employer| [employer.name, employer.id] }, include_blank: false, id: "id_of_the_employer_id_select_box" %>
   </div>
 
   <div class="field">

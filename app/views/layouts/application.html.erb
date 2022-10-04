@@ -11,6 +11,18 @@
   </head>
 
   <body>
+    <% if Current.user %>
+      <nav>
+        <ul>
+          <!-- This puts the navbar on each page -->
+          <li><%= link_to 'Directory', '/' %></li>
+          <li><%= link_to 'Calendar', '/events' %></li>
+          <!-- Put Admin if role == admin -->
+          <li><%= link_to 'Settings', '/settings' %></li>
+          <%= button_to("Logout", logout_path, method: :delete) %>
+        </ul>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>
