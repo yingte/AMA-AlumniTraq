@@ -22,7 +22,7 @@
 
 <p>
   <strong>Employer:</strong>
-  <%= @alumnus.employer.name %>
+  <%= @alumnus.employer %>
 </p>
 
 <p>
@@ -31,4 +31,4 @@
 </p>
 
 <%= link_to 'Edit', edit_alumnus_path(@alumnus) %> |
-<%= link_to 'Back', alumni_path %>
+<%= link_to 'Back', Current.previous_path %>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :set_current_user, :only => [:new, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :check_authority, only: %i[ index destroy ]
 
   # GET /users or /users.json
   def index
@@ -26,8 +27,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        # Login the new user
-        session[:user_id] = @user.id
+        # Login the new user if not an admin
+        if @user.role.id != 1
+          session[:user_id] = @user.id
+        end
 
         # If new user is an alumnus, redirect to collect alumnus-specific information
         if @user.role.name == "Alumni"

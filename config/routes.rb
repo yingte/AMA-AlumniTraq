@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :employers
-  resources :job_categories
-  resources :majors
   root "directory#index"
 
+  resources :job_categories
+  resources :majors
   resources :event_attendees
   resources :events
   resources :media_handles
