@@ -20,7 +20,5 @@ class DirectoryController < ApplicationController
         @alumnus = User.find(params[:id])
         @alumnus_info = Alumnus.where('user_id = ' + String(params[:id])).first
         #@alumnus_handles = MediaHandle.where('user_id = ' + String(params[:id]))
-    end
-
-   
+    end  
 end
