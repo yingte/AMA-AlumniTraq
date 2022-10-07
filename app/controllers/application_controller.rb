@@ -18,19 +18,16 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def check_authority
-        if Current.user.role.id != 1
-            respond_to do |format|
-                format.html { render file: "#{Rails.root}/public/401.html", :layout => false, :status => :unauthorized }
-                format.xml  { head :unauthorized }
-                format.any  { head :unauthorized }
-            end
+    def render_401
+        respond_to do |format|
+            format.html { render file: "#{Rails.root}/public/401.html", :layout => false, :status => :unauthorized }
+            format.xml  { head :unauthorized }
+            format.any  { head :unauthorized }
         end
     end
 
     def set_smart_link
         Current.previous_path = session[:current_path]
-        Current.current_path = request.path
         session[:current_path] = request.path
     end
 end

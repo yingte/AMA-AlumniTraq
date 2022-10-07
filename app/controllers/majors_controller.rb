@@ -1,5 +1,6 @@
 class MajorsController < ApplicationController
   before_action :set_major, only: %i[ show edit update destroy ]
+  before_action :check_admin_authority
 
   # GET /majors or /majors.json
   def index
@@ -66,5 +67,11 @@ class MajorsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def major_params
       params.require(:major).permit(:name)
+    end
+
+    def check_admin_authority
+      if Current.user.role.id != 1
+        render_401()
+      end
     end
 end
