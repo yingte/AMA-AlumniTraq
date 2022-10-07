@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :media_handles
   resources :alumni
   resources :users
+  resources :calendarevents
   resources :role_permissions
   resources :permissions
   resources :roles
