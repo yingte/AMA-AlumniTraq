@@ -19,11 +19,19 @@ ActiveRecord::Schema.define(version: 2022_10_03_195349) do
     t.bigint "user_id", null: false
     t.text "bio"
     t.string "job_title"
+    t.bigint "job_category_id", default: 1, null: false
     t.string "employer"
     t.text "availability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_category_id"], name: "index_alumni_on_job_category_id"
     t.index ["user_id"], name: "index_alumni_on_user_id"
+  end
+
+  create_table "employers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "event_attendees", force: :cascade do |t|
@@ -41,6 +49,18 @@ ActiveRecord::Schema.define(version: 2022_10_03_195349) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "job_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "majors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "media_handles", force: :cascade do |t|
     t.bigint "alumnus_id", null: false
     t.string "platform"
@@ -48,19 +68,6 @@ ActiveRecord::Schema.define(version: 2022_10_03_195349) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["alumnus_id"], name: "index_media_handles_on_alumnus_id"
-  end
-
-  create_table "permissions", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "role_permissions", force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "permission_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -81,19 +88,24 @@ ActiveRecord::Schema.define(version: 2022_10_03_195349) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest"
     t.bigint "role_id", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "major"
+    t.bigint "major_id"
     t.integer "graduation_year"
-    t.string "email"
     t.string "phone"
+    t.boolean "is_approved", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["major_id"], name: "index_users_on_major_id"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "alumni", "job_categories"
   add_foreign_key "alumni", "users"
   add_foreign_key "media_handles", "alumni"
+  add_foreign_key "users", "majors"
   add_foreign_key "users", "roles"
 end

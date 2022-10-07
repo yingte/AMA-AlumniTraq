@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @alumnus.user_id %>
+  <%= @alumnus.user.first_name %> <%= @alumnus.user.last_name %>
 </p>
 
 <p>
@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Job category:</strong>
+  <%= @alumnus.job_category.name %>
+</p>
+
+<p>
   <strong>Employer:</strong>
   <%= @alumnus.employer %>
 </p>
@@ -26,4 +31,4 @@
 </p>
 
 <%= link_to 'Edit', edit_alumnus_path(@alumnus) %> |
-<%= link_to 'Back', alumni_path %>
+<%= link_to 'Back', Current.previous_path %>
