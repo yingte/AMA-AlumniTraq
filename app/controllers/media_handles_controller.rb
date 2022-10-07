@@ -1,5 +1,6 @@
 class MediaHandlesController < ApplicationController
   before_action :set_media_handle, only: %i[ show edit update destroy ]
+  before_action :check_admin_authority, only: %i[ index ]
 
   # GET /media_handles or /media_handles.json
   def index
@@ -66,5 +67,11 @@ class MediaHandlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def media_handle_params
       params.require(:media_handle).permit(:alumnus_id, :platform, :link)
+    end
+
+    def check_admin_authority
+      if Current.user.role.id != 1
+        render_401()
+      end
     end
 end

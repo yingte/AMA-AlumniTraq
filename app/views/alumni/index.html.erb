@@ -7,7 +7,12 @@
     <tr>
       <th>User</th>
       <th>Bio</th>
+<<<<<<< HEAD
+      <th>Job Title</th>
+=======
       <th>Job title</th>
+      <th>Job category</th>
+>>>>>>> dev
       <th>Employer</th>
       <th>Availability</th>
       <th colspan="3"></th>
@@ -17,9 +22,10 @@
   <tbody>
     <% @alumni.each do |alumnus| %>
       <tr>
-        <td><%= alumnus.user_id %></td>
+        <td><%= alumnus.user.first_name %> <%= alumnus.user.last_name %></td>
         <td><%= alumnus.bio %></td>
         <td><%= alumnus.job_title %></td>
+        <td><%= alumnus.job_category.name %></td>
         <td><%= alumnus.employer %></td>
         <td><%= alumnus.availability %></td>
         <td><%= link_to 'Show', alumnus %></td>

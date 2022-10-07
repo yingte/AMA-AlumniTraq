@@ -6,7 +6,7 @@ General Specs:
 
 * ruby-3.0.2
 
-* PSQL
+* PSQL 13
 
 * Docker recommended if running locally on Windows machine.
 

@@ -1,0 +1,9 @@
+<h1>Settings</h1>
+
+<ul>
+    <li><%= link_to 'Details', Current.user %></li>
+    <% if Current.user.role.id == 3 %>
+        <li><%= link_to 'Alumnus Info', Current.user.alumnus %></li>
+    <% end %>
+    <li>3rd Party Authentication</li>
+</ul>
