@@ -5,11 +5,7 @@
 #   password_confirmation:string
 
 class User < ApplicationRecord
-<<<<<<< HEAD
-  include Filterable
-=======
   has_secure_password
->>>>>>> dev
 
   belongs_to :role
   belongs_to :major
