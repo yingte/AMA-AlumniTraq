@@ -11,12 +11,6 @@
     </div>
   <% end %>
 
-<<<<<<< HEAD
-  <div class="field">
-    <%= form.label :user %>
-    <%= form.number_field :user_id %>
-  </div>
-=======
   <% if Current.user.role.id = 1 %>
     <div class="field">
       <%= form.label :user_id %>
@@ -26,7 +20,6 @@
     <h3><%= Current.user.first_name %> <%= Current.user.last_name %></h3>
     <%= form.hidden_field :user_id, value: Current.user.id %>
   <% end %>
->>>>>>> dev
 
   <div class="field">
     <%= form.label :bio %>

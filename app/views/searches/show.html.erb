@@ -1,24 +1,20 @@
-<h1>Advanced Search Results</h1>
-
 
 <% if @search.search_alumni.empty? %>
- <p>No Records Found</p>
-
-
+ <p><strong>No Records Found</strong></p>
 
 <% else %>
-<% i = 0 %>
+  <% i = 0 %>
   <% @search.search_alumni.each do |search_info| %>
     <br>
 
     <div class="div">
       <h1><%= search_info.first_name %> <%= search_info.last_name %></h1>
-      <p>Major: <%= search_info.major %></p>
+      <p>Major: <%= search_info.major.name %></p>
       <p>Graduation Year: <%= search_info.graduation_year %></p>
    
     </div>
     <% i += 1 %>
-    <%end%>
+  <%end%>
 
 <% end %>
 

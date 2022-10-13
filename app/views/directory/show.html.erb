@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+
 <h1><%= @alumnus.first_name %> <%= @alumnus.last_name %></h1>
 
 <p>
@@ -28,16 +29,17 @@
 </p>
 
 <p>
-<<<<<<< HEAD
   <strong>Job Title:</strong>
-=======
+  <%= @alumnus_info.job_title.name %>
+</p>
+
+<p>
   <strong>Job category:</strong>
   <%= @alumnus_info.job_category.name %>
 </p>
 
 <p>
   <strong>Job title:</strong>
->>>>>>> dev
   <%= @alumnus_info.job_title %>
 </p>
 
@@ -51,9 +53,4 @@
   <%= @alumnus_info.availability %>
 </p>
 
-
-<<<<<<< HEAD
-<%= link_to 'Back', '/directory' %>
-=======
 <%= link_to 'Back', Current.previous_path %>
->>>>>>> dev
