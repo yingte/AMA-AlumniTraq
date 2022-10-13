@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<!-- Only show ID to admin -->
+<% if @user.role.id == 1 %>
+  <p>
+    <strong>ID:</strong>
+    <%= @user.id %>
+  </p>
+<% end %>
+
 <p>
   <strong>Role:</strong>
   <%= @user.role.name %>

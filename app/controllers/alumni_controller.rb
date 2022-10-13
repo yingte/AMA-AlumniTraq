@@ -5,7 +5,7 @@ class AlumniController < ApplicationController
 
   # GET /alumni or /alumni.json
   def index
-    @alumni = Alumnus.all
+    @users = User.where("role_id = 3").order(:last_name)
   end
 
   # GET /alumni/1 or /alumni/1.json
@@ -69,7 +69,7 @@ class AlumniController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def alumnus_params
-      params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer, :availability)
+      params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer, :availability, :image)
     end
   
     def check_alum_authority

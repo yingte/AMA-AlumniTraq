@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= link_to image_tag(@alumnus.image_as_thumbnail), @alumnus.image if @alumnus.image.attached? %>
+</p>
+
+<p>
   <strong>User:</strong>
   <%= @alumnus.user.first_name %> <%= @alumnus.user.last_name %>
 </p>

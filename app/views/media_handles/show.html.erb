@@ -2,7 +2,7 @@
 
 <p>
   <strong>Alumnus:</strong>
-  <%= @media_handle.alumnus_id %>
+  <%= @media_handle.alumnus.user.first_name %> <%= @media_handle.alumnus.user.last_name %>
 </p>
 
 <p>

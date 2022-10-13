@@ -1,5 +1,5 @@
 <h1>Directory</h1>
-<h3>Found <%= @alumni.size %> matches</h3>
+<h3>Found <%= @users.size %> matches</h3>
 
 <table>
   <thead>
@@ -11,26 +11,22 @@
       <th>Job category</th>
       <th>Job title</th>
       <th>Employer</th>
-      <th>Picture</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% i = 0 %>
-    <% @alumni.each do |alumnus| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= alumnus.first_name %></td>
-        <td><%= alumnus.last_name %></td>
-        <td><%= alumnus.major.name %></td>
-        <td><%= alumnus.graduation_year %></td>
-        <td><%= @alumni_info[i].job_category.name %></td>
-        <td><%= @alumni_info[i].job_title %></td>
-        <td><%= @alumni_info[i].employer %></td>
-        <td>"Picture"</td>
-        <td><%= link_to 'View', '/directory/' + String(alumnus.id) %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.major.name %></td>
+        <td><%= user.graduation_year %></td>
+        <td><%= user.alumnus.job_category.name %></td>
+        <td><%= user.alumnus.job_title %></td>
+        <td><%= user.alumnus.employer %></td>
+        <td><%= link_to 'View', '/directory/' + String(user.id) %></td>
       </tr>
-      <% i += 1 %>
     <% end %>
   </tbody>
 </table>

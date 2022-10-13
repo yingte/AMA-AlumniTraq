@@ -16,17 +16,17 @@
   </thead>
 
   <tbody>
-    <% @alumni.each do |alumnus| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= alumnus.user.first_name %> <%= alumnus.user.last_name %></td>
-        <td><%= alumnus.bio %></td>
-        <td><%= alumnus.job_title %></td>
-        <td><%= alumnus.job_category.name %></td>
-        <td><%= alumnus.employer %></td>
-        <td><%= alumnus.availability %></td>
-        <td><%= link_to 'Show', alumnus %></td>
-        <td><%= link_to 'Edit', edit_alumnus_path(alumnus) %></td>
-        <td><%= link_to 'Destroy', alumnus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.first_name %> <%= user.last_name %></td>
+        <td><%= user.alumnus.bio %></td>
+        <td><%= user.alumnus.job_title %></td>
+        <td><%= user.alumnus.job_category.name %></td>
+        <td><%= user.alumnus.employer %></td>
+        <td><%= user.alumnus.availability %></td>
+        <td><%= link_to 'Show', user.alumnus %></td>
+        <td><%= link_to 'Edit', edit_alumnus_path(user.alumnus) %></td>
+        <td><%= link_to 'Destroy', user.alumnus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

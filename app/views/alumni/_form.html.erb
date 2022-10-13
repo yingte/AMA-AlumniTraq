@@ -11,15 +11,23 @@
     </div>
   <% end %>
 
+  <!-- Only allow admin to change the user foreign key -->
   <% if Current.user.role.id = 1 %>
     <div class="field">
+      <!-- Change the ID to a dropdown -->
       <%= form.label :user_id %>
-      <%= form.number_field :user_id %>
+      <%= form.select :user_id, User.where("role_id = 3").order(:last_name).map { |user| [user.first_name + " " + user.last_name + " - " + String(user.graduation_year), user.id] }, include_blank: false, id: "id_of_the_user_id_select_box" %>
     </div>
   <% else %>
+    <!-- Just display the name of the user -->
     <h3><%= Current.user.first_name %> <%= Current.user.last_name %></h3>
     <%= form.hidden_field :user_id, value: Current.user.id %>
   <% end %>
+
+  <div class="field">
+    <%= form.label "Profile Photo" %>
+    <%= form.file_field :image %>
+  </div>
 
   <div class="field">
     <%= form.label :bio %>
