@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-The Alumni Tracker is an web application for the Aggies Men's Alliance (AMA) that stores the information of alumni. The key feature of the application is the directory which is where the alumni information is stored. In the directory, a user may perform a basic or advanced search to find specific alumni. The application also features a calendar where users are able to see AMA events. Users that have the role of administrator are granted access to more features in the app. Administrators are able to create, update, and delete alumni information from the directory. Admins are also able to create, edit, and delete events from the calendar.
+The Alumni Tracker is a web application for the Aggies Men's Alliance that stores soecified information of an alumni. The key feature of the application is the directory which is where the alumni information is stored. In the directory, a user may perform a basic or advanced search to find specific alumni. The application also features a calendar where users are able to see AMA events. Users that have the role of administrator are granted access to more features in the app. Administrators are able to create, update, and delete alumni information from the directory. Admins are also able to create, edit, and delete events from the calendar.
 
 ## Requirements ##
 
