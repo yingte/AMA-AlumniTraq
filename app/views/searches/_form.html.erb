@@ -15,7 +15,7 @@
     <div class="field">
       <%= form.label :major %>
       <!-- Changed major_id to major_name -->
-      <%= form.select :major, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
+      <%= form.select :major, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: true, id: "id_of_the_major_id_select_box" %>
     </div>
 
     <div class="field">
@@ -24,9 +24,14 @@
     </div>
 
     <div class="field">
-    <%= form.label :job_title %>
-    <%= form.text_field :job_title %>
-  </div>
+      <%= form.label :job_category %>
+      <%= form.text_field :job_category %>
+    </div>
+
+    <div class="field">
+      <%= form.label :job_title %>
+      <%= form.text_field :job_title %>
+    </div>
 
   <div class="field">
     <%= form.label :employer %>

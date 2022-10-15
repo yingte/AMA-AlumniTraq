@@ -4,13 +4,16 @@
 
 <% else %>
   <% i = 0 %>
-  <% @search.search_alumni.each do |search_info| %>
+  <% @search.search_alumni.each do |searches| %>
     <br>
 
     <div class="div">
-      <h1><%= search_info.first_name %> <%= search_info.last_name %></h1>
-      <p>Major: <%= search_info.major.name %></p>
-      <p>Graduation Year: <%= search_info.graduation_year %></p>
+      <h1><%= searches.first_name %> <%= searches.last_name %></h1>
+      <p>Major: <%= searches.major.name %></p>
+      <p>Graduation Year: <%= searches.graduation_year %></p>
+      <p>Job Category: <%= @search.job_category%></p>
+      <p>Job Title: <%= @search.job_title%></p>
+      <p>Employer: <%= @search.employer%></p>
    
     </div>
     <% i += 1 %>
