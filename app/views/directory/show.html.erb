@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<<<<<<< HEAD
 <p>
   <%= link_to image_tag(@user.alumnus.image_as_thumbnail), @user.alumnus.image if @user.alumnus.image.attached? %>
 </p>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+=======
+
+<h1><%= @alumnus.first_name %> <%= @alumnus.last_name %></h1>
+>>>>>>> CEM/dev
 
 <p>
   <strong>Major:</strong>
@@ -28,6 +33,11 @@
 <p>
   <strong>Bio:</strong>
   <%= @user.alumnus.bio %>
+</p>
+
+<p>
+  <strong>Job Title:</strong>
+  <%= @alumnus_info.job_title.name %>
 </p>
 
 <p>

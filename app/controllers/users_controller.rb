@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :set_current_user, :only => [:new, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :check_authority, only: %i[ index destroy ]
+  before_action :check_admin_authority, only: %i[ index destroy ]
 
   # GET /users or /users.json
   def index
@@ -88,5 +88,11 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :role_id, :first_name, :last_name, :major_id, :graduation_year, :phone)
+    end
+
+    def check_admin_authority
+      if Current.user.role.id != 1
+        render_401()
+      end
     end
 end

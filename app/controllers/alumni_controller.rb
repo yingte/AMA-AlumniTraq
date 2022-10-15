@@ -1,6 +1,6 @@
 class AlumniController < ApplicationController
   before_action :set_alumnus, only: %i[ show edit update destroy ]
-  before_action :check_authority, only: %i[ index destroy ]
+  before_action :check_admin_authority, only: %i[ index destroy ]
   before_action :check_alum_authority, only: %i[ show new edit create update ]
 
   # GET /alumni or /alumni.json
@@ -71,16 +71,16 @@ class AlumniController < ApplicationController
     def alumnus_params
       params.require(:alumnus).permit(:user_id, :bio, :job_title, :job_category_id, :employer, :availability, :image)
     end
+
+    def check_admin_authority
+      if Current.user.role.id != 1
+        render_401()
+      end
+    end
   
     def check_alum_authority
       if Current.user.role.id != 1 && Current.user.role.id != 3
-        respond_to do |format|
-          puts(Current.user.role.name)
-          puts(Current.user.role.id)
-          format.html { render file: "#{Rails.root}/public/401.html", :layout => false, :status => :unauthorized }
-          format.xml  { head :unauthorized }
-          format.any  { head :unauthorized }
-        end
+        render_401()
       end
     end
 end

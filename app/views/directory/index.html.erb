@@ -1,12 +1,8 @@
 <h1>Directory</h1>
 
-<form action="/search" accept-charset="UTF-8" method="get">
-  <div class="field">
-    <input type="text" name="*" id="search_field">
-  </div>
+<%= form_tag search_directory_index_url, :method => 'get' do%>
+  <%= text_field_tag :search, params[:search]%>
+  <%= submit_tag " First Name Search" %>   
+<% end %>
 
-  <div class="actions">
-    <!--<input type="submit" name="commit" value="Create User" data-disable-with="Create User">-->
-    <%= link_to 'Search', '/directory/search' %>
-  </div>
-</form>
+<%= link_to "Advanced Search", new_search_path %>

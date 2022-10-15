@@ -1,6 +1,6 @@
 class JobCategoriesController < ApplicationController
   before_action :set_job_category, only: %i[ show edit update destroy ]
-  before_action :check_authority
+  before_action :check_admin_authority
 
   # GET /job_categories or /job_categories.json
   def index
@@ -67,5 +67,11 @@ class JobCategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def job_category_params
       params.require(:job_category).permit(:name)
+    end
+
+    def check_admin_authority
+      if Current.user.role.id != 1
+        render_401()
+      end
     end
 end

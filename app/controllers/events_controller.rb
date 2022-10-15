@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :check_event_authority, only: %i[ new edit create update ]
 
   # GET /events or /events.json
   def index
@@ -66,5 +67,12 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:name, :start, :end)
+    end
+
+    def check_event_authority
+      # Allow admin or event planner to write to calendar
+      if Current.user.role.id != 1 && Current.user.role.id != 4
+        render_401()
+      end
     end
 end

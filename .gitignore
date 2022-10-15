@@ -35,6 +35,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-
 # Ingore LocalStartup Bash script
 LocalStartup.sh

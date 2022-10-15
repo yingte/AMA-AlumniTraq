@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
   resources :settings, :only => [:index]
+  resources :searches
   
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
