@@ -4,6 +4,7 @@ class CreateMeetings < ActiveRecord::Migration[6.1]
       t.string :name
       t.datetime :start_time
       t.datetime :end_time
+      t.text :members
 
       t.timestamps
     end

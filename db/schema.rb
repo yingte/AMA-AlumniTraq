@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_10_15_194837) do
     t.string "name"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.text "members"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
