@@ -18,4 +18,5 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :graduation_year, presence: true
   
+  scope :alumni_users, -> { where(role_id: 3) }
 end

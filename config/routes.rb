@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "directory#index"
+  root "basic_searches#index"
 
   resources :job_categories
   resources :majors
@@ -9,13 +9,17 @@ Rails.application.routes.draw do
   resources :alumni
   resources :users
   resources :roles
-  resources :directory, :only => [:index, :show] do
+  resources :basic_searches, :only => [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+  resources :advanced_searches, :only => [:index, :show] do
     collection do
       get :search
     end
   end
   resources :settings, :only => [:index]
-  resources :searches
   
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"

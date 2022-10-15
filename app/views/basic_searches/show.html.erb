@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= link_to image_tag(@user.alumnus.image_as_thumbnail), @user.alumnus.image if @user.alumnus.image.attached? %>
+</p>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+
+<p>
+  <strong>Major:</strong>
+  <%= @user.major.name %>
+</p>
+
+<p>
+  <strong>Graduation year:</strong>
+  <%= @user.graduation_year %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @user.alumnus.bio %>
+</p>
+
+<p>
+  <strong>Job category:</strong>
+  <%= @user.alumnus.job_category.name %>
+</p>
+
+<p>
+  <strong>Job title:</strong>
+  <%= @user.alumnus.job_title %>
+</p>
+
+<p>
+  <strong>Employer:</strong>
+  <%= @user.alumnus.employer %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @user.alumnus.availability %>
+</p>
+
+<p>
+  <strong>Social Media:</strong>
+  <ul>
+    <% @user.alumnus.media_handles.each do |handle| %>
+      <li><%= link_to handle.platform, handle.link, target: :_blank %></li>
+    <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Back', Current.previous_path %>

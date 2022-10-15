@@ -1,22 +1,17 @@
 
-<% if @search.search_alumni.empty? %>
+<% if @results.empty? %>
  <p><strong>No Records Found</strong></p>
-
 <% else %>
-  <% i = 0 %>
-  <% @search.search_alumni.each do |search_info| %>
+  <% @results.each do |search_info| %>
     <br>
-
     <div class="div">
       <h1><%= search_info.first_name %> <%= search_info.last_name %></h1>
       <p>Major: <%= search_info.major.name %></p>
       <p>Graduation Year: <%= search_info.graduation_year %></p>
-   
     </div>
-    <% i += 1 %>
   <%end%>
 
 <% end %>
 
-<p><%= link_to 'Back', new_search_path%></p>
+<p><%= link_to 'Back', Current.previous_path %></p>
 

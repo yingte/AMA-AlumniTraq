@@ -1,5 +1,7 @@
 <h1>Directory</h1>
-<h3>Found <%= @users.size %> matches</h3>
+<h3>Found <%= @results.size %> matches</h3>
+
+<%= render 'form' %>
 
 <table>
   <thead>
@@ -16,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @results.each do |user| %>
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
@@ -25,7 +27,7 @@
         <td><%= user.alumnus.job_category.name %></td>
         <td><%= user.alumnus.job_title %></td>
         <td><%= user.alumnus.employer %></td>
-        <td><%= link_to 'View', '/directory/' + String(user.id) %></td>
+        <td><%= link_to 'View', '/basic_searches/' + String(user.id) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,7 +4,7 @@ class MajorsController < ApplicationController
 
   # GET /majors or /majors.json
   def index
-    @majors = Major.all
+    @majors = Major.order(:name)
   end
 
   # GET /majors/1 or /majors/1.json
