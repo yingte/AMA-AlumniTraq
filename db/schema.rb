@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(version: 2022_10_15_194837) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.datetime "start"
-    t.datetime "end"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "media_handles", force: :cascade do |t|
     t.bigint "alumnus_id", null: false
     t.string "platform"

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :meetings
   root "directory#index"
 
   resources :event_attendees
-  resources :events
+  resources :meetings
   resources :media_handles
   resources :alumni
   resources :users
