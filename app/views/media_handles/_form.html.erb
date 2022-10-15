@@ -26,12 +26,12 @@
 
   <div class="field">
     <%= form.label :platform %>
-    <%= form.text_field :platform %>
+    <%= form.select :platform, ["Facebook", "GitHub", "GroupMe", "Instagram", "LinkedIn", "Pinterest", "Reddit", "Snapchat", "TikTok", "Twitter", "WhatsApp", "YouTube", "Other"], selected: "Other" %>
   </div>
 
   <div class="field">
     <%= form.label :link %>
-    <%= form.text_field :link %>
+    <%= form.url_field :link %>
   </div>
 
   <div class="actions">

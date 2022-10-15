@@ -1,5 +1,6 @@
 class MajorsController < ApplicationController
   before_action :set_major, only: %i[ show edit update destroy ]
+  before_action :check_authority
 
   # GET /majors or /majors.json
   def index

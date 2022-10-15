@@ -12,7 +12,7 @@
   <% end %>
 
   <!-- Only allow admin to change the user foreign key -->
-  <% if Current.user.role.id = 1 %>
+  <% if Current.user.role.id == 1 %>
     <div class="field">
       <!-- Change the ID to a dropdown -->
       <%= form.label :user_id %>

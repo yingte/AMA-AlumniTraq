@@ -1,5 +1,6 @@
 class JobCategoriesController < ApplicationController
   before_action :set_job_category, only: %i[ show edit update destroy ]
+  before_action :check_authority
 
   # GET /job_categories or /job_categories.json
   def index
