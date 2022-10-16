@@ -14,7 +14,7 @@ class EventAttendeesTest < ApplicationSystemTestCase
     visit event_attendees_url
     click_on "New Event Attendee"
 
-    fill_in "Event", with: @event_attendee.event_id
+    fill_in "Event", with: @event_attendee.meeting_id
     fill_in "User", with: @event_attendee.user_id
     click_on "Create Event attendee"
 
@@ -26,7 +26,7 @@ class EventAttendeesTest < ApplicationSystemTestCase
     visit event_attendees_url
     click_on "Edit", match: :first
 
-    fill_in "Event", with: @event_attendee.event_id
+    fill_in "Event", with: @event_attendee.meeting_id
     fill_in "User", with: @event_attendee.user_id
     click_on "Update Event attendee"
 

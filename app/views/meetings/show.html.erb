@@ -2,6 +2,8 @@
 
 <%= render @meeting %>
 
+<%= button_to "RSVP", new_event_attendee_path, params: { user_id: @user.id, meeting_id: @meeting.id  } %>
+
 <div>
   <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
   <%= link_to "Back to meetings", meetings_path %>

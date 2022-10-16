@@ -7,18 +7,9 @@
 
   <% meetings.each do |meeting| %>
     <div>
-      <%= meeting.name %>
+      <%= link_to meeting.name, meeting %>
     </div>
   <% end %>
 <% end %>
-
-<div id="meetings">
-  <% @meetings.each do |meeting| %>
-    <%= render meeting %>
-    <p>
-      <%= link_to "Show this meeting", meeting %>
-    </p>
-  <% end %>
-</div>
 
 <%= link_to "Create a New meeting", new_meeting_path %>
