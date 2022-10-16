@@ -11,13 +11,14 @@
     </div>
   <% end %>
 
-  <% if alumnus.user %>
-    <h3><%= alumnus.user.first_name %> <%= alumnus.user.last_name %></h3>
-  <% else %>
+  <% if Current.user.role.id = 1 %>
     <div class="field">
       <%= form.label :user_id %>
       <%= form.number_field :user_id %>
     </div>
+  <% else %>
+    <h3><%= Current.user.first_name %> <%= Current.user.last_name %></h3>
+    <%= form.hidden_field :user_id, value: Current.user.id %>
   <% end %>
 
   <div class="field">
@@ -37,9 +38,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :employer_id %>
-    <!-- Changed employer_id to employer_name -->
-    <%= form.select :employer_id, Employer.order(:name).map { |employer| [employer.name, employer.id] }, include_blank: false, id: "id_of_the_employer_id_select_box" %>
+    <%= form.label :employer %>
+    <%= form.text_field :employer %>
   </div>
 
   <div class="field">
