@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   belongs_to :role
   belongs_to :major
-  has_one :alumnus
+  has_one :alumnus, dependent: :destroy
   has_many :events, through: :event_attendees
   has_many :event_attendees
 
@@ -17,5 +17,4 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :graduation_year, presence: true
-  
 end

@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :set_current_user, :only => [:new, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :check_authority, only: %i[ index destroy ]
+  before_action :check_authority, only: %i[ destroy ]
+  #before_action :set_session, only: %i[ index destroy ]
+  helper_method :is_admin?
+  helper_method :is_sign_up?
 
   # GET /users or /users.json
   def index
@@ -27,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        # Login the new user if not an admin
+        # Login the new user not an admin
         if @user.role.id != 1
           session[:user_id] = @user.id
         end
@@ -60,8 +63,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+        if session[:user_id] == @user.id
+          format.html { redirect_to user_index_path, notice: "Profile was successfully updated." }
+        else
+          format.html { redirect_to admin_index_path, notice: "User was successfully updated." }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -74,11 +80,10 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      format.html { redirect_to admin_index_path, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
