@@ -26,6 +26,47 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def is_admin?
+        if Current.user.role.id != 1
+            return false
+        else
+            return true
+        end
+    end
+
+    def is_alumni?
+        if Current.user.role.id != 2
+            return false
+        else
+            return true
+        end
+    end
+
+    def is_member?
+        if Current.user.role.id != 3
+            return false
+        else
+            return true
+        end
+    end
+
+    def is_event_planner?
+        if Current.user.role.id != 4
+            return false
+        else
+            return true
+        end
+    end
+
+    def is_sign_up?
+        if Current.user.blank?
+            return true;
+        else
+            return false;
+        end
+    end
+
+
     def set_smart_link
         Current.previous_path = session[:current_path]
         session[:current_path] = request.path

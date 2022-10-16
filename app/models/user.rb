@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   belongs_to :role
   belongs_to :major
-  has_one :alumnus
+  has_one :alumnus, dependent: :destroy
   has_many :events, through: :event_attendees
   has_many :event_attendees
 
