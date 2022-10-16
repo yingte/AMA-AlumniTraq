@@ -15,8 +15,20 @@
   </p>
 
   <p>
-    <strong>Members:</strong>
-    <%= meeting.members %>
+    <strong>Description:</strong>
+    <%= meeting.description %>
+  </p>
+
+  <p>
+    <strong>Members Attending:</strong>
+    <ul> 
+      <% meeting.event_attendees.each do | event_attendee | %>
+        <li>
+          <%= event_attendee.user.first_name %> 
+          <%= event_attendee.user.last_name %>
+        </li>
+      <%end %>
+    </ul>
   </p>
 
 </div>

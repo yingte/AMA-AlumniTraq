@@ -1,5 +1,6 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: %i[ show edit update destroy ]
+  before_action :check_event_authority, except: %i[ index show ]
 
   # GET /meetings or /meetings.json
   def index
@@ -66,6 +67,13 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:name, :start_time, :end_time, :members)
+      params.require(:meeting).permit(:name, :start_time, :end_time, :description)
+    end
+
+    def check_event_authority
+      # Allow admin or event planner to write to calendar
+      if Current.user.role.id != 1 && Current.user.role.id != 4
+        render_401()
+      end
     end
 end

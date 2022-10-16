@@ -2,11 +2,11 @@
 
 <%= render @meeting %>
 
-<%= button_to "RSVP", new_event_attendee_path, params: { user_id: @user.id, meeting_id: @meeting.id  } %>
+<%= button_to "RSVP", event_attendees_path, params: { user_id: @user.id, meeting_id: @meeting.id  } %>
 
 <div>
   <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
-  <%= link_to "Back to meetings", meetings_path %>
+  <%= link_to 'Back', Current.previous_path %>
 
   <%= button_to "Destroy this meeting", @meeting, method: :delete %>
 </div>
