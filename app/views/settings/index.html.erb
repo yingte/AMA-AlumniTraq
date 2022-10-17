@@ -9,7 +9,7 @@
     <li><%= link_to 'Account Details', Current.user %></li>
     <% if Current.user.is_alumnus? %>
         <li><%= link_to 'Alumnus Info', Current.user.alumnus %></li>
-        <li><%= link_to 'Social Media Handles', new_media_handle_path %></li>
+        <li><%= link_to 'Social Media Handles', media_handles_path %></li>
     <% end %>
     <li>3rd Party Authentication</li>
 </ul>

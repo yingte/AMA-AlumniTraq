@@ -1,10 +1,14 @@
 class MediaHandlesController < ApplicationController
   before_action :set_media_handle, only: %i[ show edit update destroy ]
-  before_action :check_admin_authority, only: %i[ index ]
+  before_action :check_media_handle_authority
 
   # GET /media_handles or /media_handles.json
   def index
-    @media_handles = MediaHandle.all
+    if Current.user.is_admin?
+      @media_handles = MediaHandle.all
+    else
+      @media_handles = MediaHandle.where(alumnus: Current.user.alumnus)
+    end
   end
 
   # GET /media_handles/1 or /media_handles/1.json
@@ -69,8 +73,8 @@ class MediaHandlesController < ApplicationController
       params.require(:media_handle).permit(:alumnus_id, :platform, :link)
     end
 
-    def check_admin_authority
-      if !Current.user.is_admin?
+    def check_media_handle_authority
+      if !Current.user.is_admin? && !Current.user.is_alumnus?
         render_401()
       end
     end
