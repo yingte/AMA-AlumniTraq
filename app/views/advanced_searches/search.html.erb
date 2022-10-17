@@ -1,0 +1,37 @@
+<h1>Directory</h1>
+<h3>Found <%= @results.size %> matches</h3>
+
+<%= link_to "New Advanced Search", advanced_searches_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Major</th>
+      <th>Graduation year</th>
+      <th>Job Category</th>
+      <th>Job Title</th>
+      <th>Employer</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.major.name %></td>
+        <td><%= user.graduation_year %></td>
+        <td><%= user.alumnus.job_category.name %></td>
+        <td><%= user.alumnus.job_title %></td>
+        <td><%= user.alumnus.employer %></td>
+        <td><%= link_to 'View', '/advanced_searches/' + String(user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Back', Current.previous_path %></p>
+

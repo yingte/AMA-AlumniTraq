@@ -2,7 +2,7 @@
 
 <p>
   <strong>Alumnus:</strong>
-  <%= @media_handle.alumnus_id %>
+  <%= @media_handle.alumnus.user.first_name %> <%= @media_handle.alumnus.user.last_name %>
 </p>
 
 <p>
@@ -16,4 +16,4 @@
 </p>
 
 <%= link_to 'Edit', edit_media_handle_path(@media_handle) %> |
-<%= link_to 'Back', media_handles_path %>
+<%= link_to 'Back', Current.previous_path %>

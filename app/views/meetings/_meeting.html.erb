@@ -1,0 +1,37 @@
+<div id="<%= dom_id meeting %>">
+  <p>
+    <strong>Name:</strong>
+    <%= meeting.name %>
+  </p>
+
+  <p>
+    <strong>Start time:</strong>
+    <%= meeting.start_time %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <%= meeting.end_time %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= meeting.description %>
+  </p>
+
+  <p>
+    <strong>Members Attending:</strong>
+    <ul> 
+      <% meeting.event_attendees.each do | event_attendee | %>
+        <li>
+          <%= event_attendee.user.first_name %> 
+          <%= event_attendee.user.last_name %> 
+          <% if event_attendee.user.is_alumnus? %>
+            | <%= link_to 'View', '/basic_searches/' + String(event_attendee.user.id) %>
+          <% end %>
+        </li>
+      <%end %>
+    </ul>
+  </p>
+
+</div>

@@ -20,7 +20,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Last name", with: @user.last_name
     fill_in "Major", with: @user.major
     fill_in "Phone", with: @user.phone
-    fill_in "Role", with: @user.role_id
+    fill_in "Role name", with: @user.role_id
     click_on "Create User"
 
     assert_text "User was successfully created"
@@ -37,7 +37,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Last name", with: @user.last_name
     fill_in "Major", with: @user.major
     fill_in "Phone", with: @user.phone
-    fill_in "Role", with: @user.role_id
+    fill_in "Role name", with: @user.role_id
     click_on "Update User"
 
     assert_text "User was successfully updated"

@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Role</th>
+      <th>Role name</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Major</th>
@@ -22,7 +22,7 @@
         <td><%= user.role.name %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.major %></td>
+        <td><%= user.major.name %></td>
         <td><%= user.graduation_year %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
@@ -35,5 +35,8 @@
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
+<% if Current.user.is_admin? %>
+    <%= link_to 'Admin Approvals', admin_index_path %>
+    <br>
+<% end %>
+<%= link_to 'Edit Profile', edit_user_path(session[:user_id]) %>

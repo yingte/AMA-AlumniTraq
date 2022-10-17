@@ -12,4 +12,48 @@
  *
  *= require_tree .
  *= require_self
+ *= require simple_calendar
  */
+
+body {
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: black;
+    padding: 7px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: #666
+}
+
+nav li form input {
+    background-color: initial;
+    border:none;
+    color:#666;
+}
+  
+nav li form input:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.profile-tab {
+    padding: 0 4px;
+}

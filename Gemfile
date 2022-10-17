@@ -20,20 +20,18 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'seed_dump'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'rexml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
 end
 
 group :development do
@@ -53,8 +51,18 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'simplecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 3rd Party OAuth
+gem 'devise'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+# gem 'omniauth-linkedin-oauth2'  # OAuth2 update broke the original gem but the owner hasn't implmented the fix
+gem 'omniauth-linkedin-oauth2', git: 'https://github.com/unreasonable/omniauth-linkedin-oauth2'  # This fork has the fix
+
+# Calendar plugin
+gem "simple_calendar", "~> 2.4"
