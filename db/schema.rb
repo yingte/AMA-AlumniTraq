@@ -56,16 +56,6 @@ ActiveRecord::Schema.define(version: 2022_10_15_194837) do
     t.index ["user_id"], name: "index_alumni_on_user_id"
   end
 
-  create_table "calendarevents", force: :cascade do |t|
-    t.string "title"
-    t.integer "calendar_id"
-    t.datetime "start"
-    t.datetime "end"
-    t.string "location"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "event_attendees", force: :cascade do |t|
     t.integer "meeting_id"
     t.integer "user_id"
