@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   skip_before_action :set_current_user, :only => [:new, :create]
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :check_admin_authority, only: %i[ index destroy ]
-  helper_method :is_admin?
   helper_method :is_sign_up?
 
   # GET /users or /users.json

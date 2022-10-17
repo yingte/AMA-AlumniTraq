@@ -2,8 +2,6 @@ class AlumniController < ApplicationController
   before_action :set_alumnus, only: %i[ show edit update destroy ]
   before_action :check_admin_authority, only: %i[ index destroy ]
   before_action :check_alum_authority, only: %i[ show new edit create update ]
-  helper_method :is_admin?
-  helper_method :is_alumnus?
 
   # GET /alumni or /alumni.json
   def index

@@ -26,22 +26,6 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def is_admin?
-        Current.user.is_admin?
-    end
-
-    def is_member?
-        Current.user.role.id == 2
-    end
-
-    def is_alumnus?
-        Current.user.role.id == 3
-    end
-
-    def is_event_planner?
-        Current.user.role.id == 4
-    end
-
     def is_sign_up?
         Current.user.blank?
     end

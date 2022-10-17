@@ -35,7 +35,7 @@
 </table>
 
 <br>
-<% if is_admin? %>
+<% if Current.user.is_admin? %>
     <%= link_to 'Admin Approvals', admin_index_path %>
     <br>
 <% end %>
