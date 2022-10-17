@@ -5,6 +5,7 @@
 #   password_confirmation:string
 
 class User < ApplicationRecord
+  devise :omniauthable, omniauth_providers: [:google_oauth2, :facebook, :linkedin]
   has_secure_password
 
   belongs_to :role
@@ -19,4 +20,38 @@ class User < ApplicationRecord
   validates :graduation_year, presence: true
   
   scope :alumni_users, -> { where(role_id: 3) }
+  scope :unapproved_users, -> { where(is_approved: false) }
+
+  def is_admin?
+    role_id == 1
+  end
+  
+  def is_member?
+    role_id == 2
+  end
+  
+  def is_alumnus?
+    role_id == 3
+  end
+  
+  def is_event_planner?
+    role_id == 4
+  end
+
+  def self.from_omniauth(access_token)
+    puts("\nIn user.rb\n")
+    data = access_token.info
+    user = User.where(email: data['email']).first
+
+    # Create new user if they don't exist
+    unless user
+        user = User.create(first_name: data['first_name'],
+          last_name: data['last_name'],
+          email: data['email'],
+          password: Devise.friendly_token[0,20]
+        )
+    end
+
+    user
+  end
 end

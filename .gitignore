@@ -42,5 +42,7 @@ yarn-debug.log*
 yarn-debug.log*
 .yarn-integrity
 
-# Ingore LocalStartup Bash script
-LocalStartup.sh
+# Ingore local startup Bash script
+start.sh
+
+/config/credentials/development.key

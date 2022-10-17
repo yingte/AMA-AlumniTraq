@@ -15,7 +15,7 @@
     color: white;
 }
 
-#login-main form {
+#login-container {
     background-color: rgb(25, 25, 40);
     color: #888;
     display: flex;
@@ -25,11 +25,6 @@
     padding: 25px 50px;
     border-radius: 15px;
     box-shadow: 0 0 10px black;
-}
-
-#login-main div {
-    margin: 5px 0;
-    width: 75%;
 }
 
 #login-main .oauth-button {

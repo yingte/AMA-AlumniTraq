@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
                 redirect_to login_path
             end
         else
+            puts("Checking out early...")
             redirect_to login_path
         end
     end
@@ -27,43 +28,23 @@ class ApplicationController < ActionController::Base
     end
 
     def is_admin?
-        if Current.user.role.id != 1
-            return false
-        else
-            return true
-        end
-    end
-
-    def is_alumni?
-        if Current.user.role.id != 2
-            return false
-        else
-            return true
-        end
+        Current.user.is_admin?
     end
 
     def is_member?
-        if Current.user.role.id != 3
-            return false
-        else
-            return true
-        end
+        Current.user.role.id == 2
+    end
+
+    def is_alumnus?
+        Current.user.role.id == 3
     end
 
     def is_event_planner?
-        if Current.user.role.id != 4
-            return false
-        else
-            return true
-        end
+        Current.user.role.id == 4
     end
 
     def is_sign_up?
-        if Current.user.blank?
-            return true;
-        else
-            return false;
-        end
+        Current.user.blank?
     end
 
 

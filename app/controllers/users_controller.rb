@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_index_path, notice: "User was successfully destroyed." }
+      format.html { redirect_to Current.previous_path, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     end
 
     def check_admin_authority
-      if Current.user.role.id != 1
+      if !Current.user.is_admin?
         render_401()
       end
     end

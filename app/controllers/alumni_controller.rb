@@ -2,6 +2,8 @@ class AlumniController < ApplicationController
   before_action :set_alumnus, only: %i[ show edit update destroy ]
   before_action :check_admin_authority, only: %i[ index destroy ]
   before_action :check_alum_authority, only: %i[ show new edit create update ]
+  helper_method :is_admin?
+  helper_method :is_alumnus?
 
   # GET /alumni or /alumni.json
   def index
@@ -73,13 +75,13 @@ class AlumniController < ApplicationController
     end
 
     def check_admin_authority
-      if Current.user.role.id != 1
+      if !Current.user.is_admin?
         render_401()
       end
     end
   
     def check_alum_authority
-      if Current.user.role.id != 1 && Current.user.role.id != 3
+      if !Current.user.is_admin? && !Current.user.is_alumnus?
         render_401()
       end
     end

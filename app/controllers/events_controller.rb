@@ -71,7 +71,7 @@ class EventsController < ApplicationController
 
     def check_event_authority
       # Allow admin or event planner to write to calendar
-      if Current.user.role.id != 1 && Current.user.role.id != 4
+      if !Current.user.is_admin? && !Current.user.is_event_planner?
         render_401()
       end
     end

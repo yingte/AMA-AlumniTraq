@@ -11,26 +11,17 @@
     </div>
   <% end %>
 
-<% if is_admin? %>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, :readonly=>true%>
-  </div>
-<%else%>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-<%end%>
+<div class="field">
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+</div>
 
 <% if is_sign_up? %>
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
-<%end%>
 
-<% if is_sign_up? %>
   <div class="field">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
@@ -57,57 +48,31 @@
   </div>
 <% end %>
 
-<% if is_admin? && session[:user_id] != user.id%>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, :readonly=>true%>
-  </div>
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, :readonly=>true%>
-  </div>
-  <div class="field">
-    <%= form.label :major_name %>
-    <!-- Changed major_id to major_name -->
-    <%= form.select :major_id, Major.where(id: user.major).order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box"%>
-  </div>
-  <div class="field">
-    <%= form.label :graduation_year %>
-    <%= form.number_field :graduation_year, :readonly=>true%>
-  </div>
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, :readonly=>true%>
-  </div>
-<%else%>
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name%>
-  </div>
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
-  </div>
+<div class="field">
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name%>
+</div>
+<div class="field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name %>
+</div>
 
-  <div class="field">
-    <%= form.label :major_name %>
-    <!-- Changed major_id to major_name -->
-    <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
-  </div>
+<div class="field">
+  <%= form.label :major_name %>
+  <!-- Changed major_id to major_name -->
+  <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
+</div>
 
-  <div class="field">
-    <%= form.label :graduation_year %>
-    <%= form.number_field :graduation_year %>
-  </div>
+<div class="field">
+  <%= form.label :graduation_year %>
+  <%= form.number_field :graduation_year %>
+</div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
+<div class="field">
+  <%= form.label :phone %>
+  <%= form.text_field :phone %>
+</div>
 
-<%end%>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="actions">
+  <%= form.submit %>
+</div>

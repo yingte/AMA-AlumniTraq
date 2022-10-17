@@ -70,7 +70,7 @@ class JobCategoriesController < ApplicationController
     end
 
     def check_admin_authority
-      if Current.user.role.id != 1
+      if !Current.user.is_admin?
         render_401()
       end
     end

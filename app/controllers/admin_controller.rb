@@ -1,10 +1,8 @@
 class AdminController < ApplicationController
-  before_action :check_authority, only: %i[ index ]
-  def create
-  end
+  before_action :check_admin_authority
 
   def index
-    @users = User.where.not(id: session[:user_id])
+    @users = User.unapproved_users
   end
 
   def approve
@@ -19,8 +17,15 @@ class AdminController < ApplicationController
       end
     end
   end
+
   private
     def approval_param
-      params.require(:user).permit(:user_id, :role, :is_approved)
+      params.permit(:user_id)
+    end
+
+    def check_admin_authority
+      if not Current.user.is_admin?
+        render_401()
+      end
     end
   end

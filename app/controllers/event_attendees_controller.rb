@@ -1,6 +1,6 @@
 class EventAttendeesController < ApplicationController
   before_action :set_event_attendee, only: %i[ show edit update destroy ]
-  before_action :check_attendees_authority, only: %i[ new edit create update ]
+  before_action :check_attendees_authority, only: %i[ index ]
 
   # GET /event_attendees or /event_attendees.json
   def index
@@ -71,7 +71,7 @@ class EventAttendeesController < ApplicationController
 
     def check_attendees_authority
       # Allow admin or event planner to write to calendar
-      if Current.user.role.id != 1 && Current.user.role.id != 4
+      if !Current.user.is_admin? && !Current.user.is_event_planner?
         render_401()
       end
     end

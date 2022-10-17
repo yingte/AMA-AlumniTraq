@@ -34,4 +34,4 @@ Local Deployment Instructions. Execute the following in terminal:
 
 7. rails server --binding=0.0.0.0
 
-8. Search http://127.0.0.1:3000 in browser.
+8. Search http://localhost:3000 in browser.
