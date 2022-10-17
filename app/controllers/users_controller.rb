@@ -30,12 +30,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # Login the new user not an admin
-        if @user.role.id != 1
+        if not @user.is_admin?
           session[:user_id] = @user.id
         end
 
         # If new user is an alumnus, redirect to collect alumnus-specific information
-        if @user.role.name == "Alumni"
+        if @user.is_alumnus?
           # Create new alumnus and set the FK to the new user
           @alumnus = Alumnus.new
           @alumnus.user = @user
@@ -46,10 +46,13 @@ class UsersController < ApplicationController
             format.html { redirect_to new_alumnus_path, notice: "User was successfully created but couldn't save alumnus." }
             format.json { render :new, status: :created, location: @user }
           end
-        else
-          # Standard role, show the confirmation
+        elsif @user.is_admin?
+          # Admin, show the confirmation
           format.html { redirect_to user_url(@user), notice: "User was successfully created." }
           format.json { render :show, status: :created, location: @user }
+        else
+          # Standard role, just login
+          format.html { redirect_to root_path, notice: "Logged in as #{@user.first_name} #{@user.last_name}" }
         end
       else
         format.html { render :new, status: :unprocessable_entity }

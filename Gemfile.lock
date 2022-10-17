@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/unreasonable/omniauth-linkedin-oauth2
+  revision: 1c6a541a2d0acc52d2436a3f3f9fe9f031c37370
+  specs:
+    omniauth-linkedin-oauth2 (1.0.0)
+      omniauth-oauth2
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,8 +148,6 @@ GEM
       oauth2 (~> 2.0.6)
       omniauth (~> 2.0)
       omniauth-oauth2 (~> 1.8.0)
-    omniauth-linkedin-oauth2 (1.0.0)
-      omniauth-oauth2
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
@@ -279,7 +284,7 @@ DEPENDENCIES
   listen (~> 3.3)
   omniauth-facebook
   omniauth-google-oauth2
-  omniauth-linkedin-oauth2
+  omniauth-linkedin-oauth2!
   omniauth-rails_csrf_protection
   pg (~> 1.1)
   puma (~> 5.0)

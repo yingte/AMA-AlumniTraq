@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   
   # Sessions routes
   get "login", to: "sessions#new"
+  resources :sessions, :only => [:new]  # Add this for LinkedIn omniauth
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 

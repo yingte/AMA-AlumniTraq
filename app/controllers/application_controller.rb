@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
                 redirect_to login_path
             end
         else
-            puts("Checking out early...")
             redirect_to login_path
         end
     end

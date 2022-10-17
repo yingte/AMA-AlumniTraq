@@ -61,4 +61,5 @@ gem 'devise'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
-gem 'omniauth-linkedin-oauth2'
+# gem 'omniauth-linkedin-oauth2'  # OAuth2 update broke the original gem but the owner hasn't implmented the fix
+gem 'omniauth-linkedin-oauth2', git: 'https://github.com/unreasonable/omniauth-linkedin-oauth2'  # This fork has the fix

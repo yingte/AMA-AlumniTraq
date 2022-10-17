@@ -1,24 +1,21 @@
 # app/controllers/users/omniauth_callbacks_controller.rb:
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    skip_before_action :set_current_user
+
     def google_oauth2
-        render inline: "In google action"
-        # puts("Handling authentication from callback...")
-        # handle_auth 'Google'
+        handle_auth 'Google'
     end
 
     def facebook
-        puts("Handling authentication from callback...")
         handle_auth 'Facebook'
     end
 
     def linkedin
-        puts("Handling authentication from callback...")
         handle_auth 'LinkedIn'
     end
 
     def handle_auth(provider)
-        puts("Handling authentication from callback...")
         # Implemented in app/models/user.rb
         @user = User.from_omniauth(request.env['omniauth.auth'])
   
