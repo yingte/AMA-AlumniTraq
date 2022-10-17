@@ -14,6 +14,7 @@ class EventAttendeesController < ApplicationController
   # GET /event_attendees/new
   def new
     @event_attendee = EventAttendee.new
+
   end
 
   # GET /event_attendees/1/edit
@@ -66,7 +67,7 @@ class EventAttendeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_attendee_params
-      params.require(:event_attendee).permit(:event_id, :user_id)
+      params.permit(:meeting_id, :user_id)
     end
 
     def check_attendees_authority

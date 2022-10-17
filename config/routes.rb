@@ -8,10 +8,16 @@ Rails.application.routes.draw do
   resources :job_categories
   resources :majors
   resources :event_attendees
-  resources :events
+  resources :meetings
   resources :media_handles
   resources :alumni
   resources :users
+<<<<<<< HEAD
+  resources :calendarevents
+  resources :role_permissions
+  resources :permissions
+=======
+>>>>>>> 8497e7ce7679b6859b8d2970745b76d51cfc6429
   resources :roles
 
   # Directory routes

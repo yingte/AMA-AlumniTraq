@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Calendar!!</h1>
+
+<%= link_to 'Add New Calendar Event', new_calendarevent_path %>
+
+<div data-controller="calendar">
+<%= tag.div nil, data: {calendarevents: @calendarevents .to_json}, id: "calendar"%>
+</div>
+

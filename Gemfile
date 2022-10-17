@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'seed_dump'
 
 # Use Active Storage variant
@@ -63,3 +63,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 # gem 'omniauth-linkedin-oauth2'  # OAuth2 update broke the original gem but the owner hasn't implmented the fix
 gem 'omniauth-linkedin-oauth2', git: 'https://github.com/unreasonable/omniauth-linkedin-oauth2'  # This fork has the fix
+
+# Calendar plugin
+gem "simple_calendar", "~> 2.4"

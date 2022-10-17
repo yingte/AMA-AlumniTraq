@@ -1,0 +1,2 @@
+class Calendarevent < ApplicationRecord
+end

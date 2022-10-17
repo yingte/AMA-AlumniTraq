@@ -11,7 +11,7 @@ class User < ApplicationRecord
   belongs_to :role
   belongs_to :major
   has_one :alumnus, dependent: :destroy
-  has_many :events, through: :event_attendees
+  has_many :meetings, through: :event_attendees
   has_many :event_attendees
 
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "Must be a valid email address" }, uniqueness: { case_sensitive: false }

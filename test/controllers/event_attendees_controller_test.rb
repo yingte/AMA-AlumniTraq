@@ -17,7 +17,7 @@ class EventAttendeesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create event_attendee" do
     assert_difference('EventAttendee.count') do
-      post event_attendees_url, params: { event_attendee: { event_id: @event_attendee.event_id, user_id: @event_attendee.user_id } }
+      post event_attendees_url, params: { event_attendee: { meeting_id: @event_attendee.meeting_id, user_id: @event_attendee.user_id } }
     end
 
     assert_redirected_to event_attendee_url(EventAttendee.last)
@@ -34,7 +34,7 @@ class EventAttendeesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update event_attendee" do
-    patch event_attendee_url(@event_attendee), params: { event_attendee: { event_id: @event_attendee.event_id, user_id: @event_attendee.user_id } }
+    patch event_attendee_url(@event_attendee), params: { event_attendee: { meeting_id: @event_attendee.meeting_id, user_id: @event_attendee.user_id } }
     assert_redirected_to event_attendee_url(@event_attendee)
   end
 
