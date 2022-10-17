@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
-    @user = Current.user
+    @event_attendee = EventAttendee.find_by(user: Current.user, meeting: @meeting)
   end
 
   # GET /meetings/new

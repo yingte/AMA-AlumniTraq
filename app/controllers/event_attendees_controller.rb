@@ -23,15 +23,29 @@ class EventAttendeesController < ApplicationController
 
   # POST /event_attendees or /event_attendees.json
   def create
-    @event_attendee = EventAttendee.new(event_attendee_params)
+    @event_attendee = EventAttendee.find_by(event_attendee_params)
+    if not @event_attendee
+      @event_attendee = EventAttendee.new(event_attendee_params)
+    end
 
-    respond_to do |format|
-      if @event_attendee.save
-        format.html { redirect_to event_attendee_url(@event_attendee), notice: "Event attendee was successfully created." }
-        format.json { render :show, status: :created, location: @event_attendee }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event_attendee.errors, status: :unprocessable_entity }
+    if Current.previous_path.start_with? "/meetings/"
+      respond_to do |format|
+        if @event_attendee.save
+          format.html { redirect_to Current.previous_path, notice: "Event attendee was successfully created." }
+        else
+          format.html { redirect_to Current.previous_path, notice: "Unable to RSVP." }
+          format.json { render json: @event_attendee.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        if @event_attendee.save
+          format.html { redirect_to event_attendee_url(@event_attendee), notice: "Event attendee was successfully created." }
+          format.json { render :show, status: :created, location: @event_attendee }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @event_attendee.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -53,9 +67,16 @@ class EventAttendeesController < ApplicationController
   def destroy
     @event_attendee.destroy
 
-    respond_to do |format|
-      format.html { redirect_to event_attendees_url, notice: "Event attendee was successfully destroyed." }
-      format.json { head :no_content }
+    if Current.previous_path.start_with? "/meetings/"
+      respond_to do |format|
+        format.html { redirect_to Current.previous_path, notice: "Event attendee was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to event_attendees_url, notice: "Event attendee was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
