@@ -11,10 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+  <% if Current.user.role.id = 1 %>
+    <div class="field">
+      <%= form.label :user_id %>
+      <%= form.number_field :user_id %>
+    </div>
+  <% else %>
+    <h3><%= Current.user.first_name %> <%= Current.user.last_name %></h3>
+    <%= form.hidden_field :user_id, value: Current.user.id %>
+  <% end %>
 
   <div class="field">
     <%= form.label :bio %>
@@ -24,6 +29,12 @@
   <div class="field">
     <%= form.label :job_title %>
     <%= form.text_field :job_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :job_category_id %>
+    <!-- Changed job_category_id to job_category_name -->
+    <%= form.select :job_category_id, JobCategory.order(:name).map { |job_category| [job_category.name, job_category.id] }, include_blank: false, id: "id_of_the_job_category_id_select_box" %>
   </div>
 
   <div class="field">

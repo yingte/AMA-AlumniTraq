@@ -8,6 +8,7 @@
       <th>Last name</th>
       <th>Major</th>
       <th>Graduation year</th>
+      <th>Job category</th>
       <th>Job title</th>
       <th>Employer</th>
       <th>Picture</th>
@@ -21,8 +22,9 @@
       <tr>
         <td><%= alumnus.first_name %></td>
         <td><%= alumnus.last_name %></td>
-        <td><%= alumnus.major %></td>
+        <td><%= alumnus.major.name %></td>
         <td><%= alumnus.graduation_year %></td>
+        <td><%= @alumni_info[i].job_category.name %></td>
         <td><%= @alumni_info[i].job_title %></td>
         <td><%= @alumni_info[i].employer %></td>
         <td>"Picture"</td>

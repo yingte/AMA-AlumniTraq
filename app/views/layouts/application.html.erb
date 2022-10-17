@@ -11,6 +11,7 @@
   </head>
 
   <body>
+<<<<<<< HEAD
     <nav>
       <ul>
         <!-- This puts the navbar on each page -->
@@ -20,6 +21,19 @@
         <li><%= link_to 'Settings', '/settings' %></li>
       </ul>
     </nav>
+=======
+    <% if Current.user %>
+      <nav>
+        <ul>
+          <!-- This puts the navbar on each page -->
+          <li><%= link_to 'Directory', '/' %></li>
+          <li><%= link_to 'Calendar', '/meetings' %></li>
+          <!-- Put Admin if role == admin -->
+          <li style="display: flex; color: #666"><%= link_to("#{Current.user.first_name} #{Current.user.last_name}", '/settings', class: "profile-tab") %> | <%= button_to("Logout", logout_path, method: :delete) %></li>
+        </ul>
+      </nav>
+    <% end %>
+>>>>>>> 8497e7ce7679b6859b8d2970745b76d51cfc6429
     <%= yield %>
   </body>
 </html>

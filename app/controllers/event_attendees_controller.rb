@@ -1,5 +1,6 @@
 class EventAttendeesController < ApplicationController
   before_action :set_event_attendee, only: %i[ show edit update destroy ]
+  before_action :check_attendees_authority, only: %i[ index ]
 
   # GET /event_attendees or /event_attendees.json
   def index
@@ -13,6 +14,7 @@ class EventAttendeesController < ApplicationController
   # GET /event_attendees/new
   def new
     @event_attendee = EventAttendee.new
+
   end
 
   # GET /event_attendees/1/edit
@@ -65,6 +67,13 @@ class EventAttendeesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_attendee_params
-      params.require(:event_attendee).permit(:event_id, :user_id)
+      params.permit(:meeting_id, :user_id)
+    end
+
+    def check_attendees_authority
+      # Allow admin or event planner to write to calendar
+      if Current.user.role.id != 1 && Current.user.role.id != 4
+        render_401()
+      end
     end
 end

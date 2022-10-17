@@ -4,7 +4,7 @@
 
 <p>
   <strong>Major:</strong>
-  <%= @alumnus.major %>
+  <%= @alumnus.major.name %>
 </p>
 
 <p>
@@ -28,6 +28,11 @@
 </p>
 
 <p>
+  <strong>Job category:</strong>
+  <%= @alumnus_info.job_category.name %>
+</p>
+
+<p>
   <strong>Job title:</strong>
   <%= @alumnus_info.job_title %>
 </p>
@@ -43,4 +48,4 @@
 </p>
 
 
-<%= link_to 'Back', '/directory' %>
+<%= link_to 'Back', Current.previous_path %>
