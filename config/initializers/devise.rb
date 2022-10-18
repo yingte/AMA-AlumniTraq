@@ -271,10 +271,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :api_key), Rails.application.credentials.dig(:google, :api_secret), prompt: 'select_account'
-  config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :api_key), Rails.application.credentials.dig(:facebook, :api_secret)
-  config.omniauth :linkedin, Rails.application.credentials.dig(:linkedin, :api_key), Rails.application.credentials.dig(:linkedin, :api_secret)
-
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :api_key),
+                  Rails.application.credentials.dig(:google, :api_secret), prompt: 'select_account'
+  config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :api_key),
+                  Rails.application.credentials.dig(:facebook, :api_secret)
+  config.omniauth :linkedin, Rails.application.credentials.dig(:linkedin, :api_key),
+                  Rails.application.credentials.dig(:linkedin, :api_secret)
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

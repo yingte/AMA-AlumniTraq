@@ -22,9 +22,13 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.major.name %></td>
+        <td>
+          <% if user.major.present? %>
+            <%= user.major.name %>
+          <% end %>
+        </td>
         <td><%= user.graduation_year %></td>
-        <td><%= user.alumnus.job_category.name %></td>
+        <td><%= user.alumnus.job_category_name_if_present %></td>
         <td><%= user.alumnus.job_title %></td>
         <td><%= user.alumnus.employer %></td>
         <td><%= link_to 'View', '/advanced_searches/' + String(user.id) %></td>

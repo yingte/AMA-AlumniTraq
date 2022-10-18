@@ -62,6 +62,21 @@
       <p>You may be logged into the wrong account.</p>
     </div>
     <p>If you are the application owner check the logs for more information.</p>
+    <p>Redirecting in <span id="countdown">3</span>...</p>
   </div>
 </body>
+<script>
+  // Redirect in 3 seconds
+  var i = 2;
+  var countdown = document.querySelector("#countdown")
+  let timed_redirect = setInterval(() => {
+    if (i > 0) {
+      countdown.textContent = i;
+    } else if (i == 0) {
+      countdown.textContent = 0;
+      window.location.replace(window.location.origin);
+    }
+    --i;
+  }, 1000);
+</script>
 </html>
