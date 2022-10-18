@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AdvancedSearchesController < ApplicationController
   def index
-    @advanced_search = AdvancedSearch.new() 
+    @advanced_search = AdvancedSearch.new
   end
 
   def search
@@ -17,7 +19,8 @@ class AdvancedSearchesController < ApplicationController
   end
 
   private
-    def advanced_search_params
-      params.permit(:first_name, :last_name, :major_id, :graduation_year, :job_category_id, :job_title, :employer)
-    end
+
+  def advanced_search_params
+    params.permit(:first_name, :last_name, :major_id, :graduation_year, :job_category_id, :job_title, :employer)
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root "basic_searches#index"
+  root 'basic_searches#index'
 
   # Oauth routes
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -15,29 +17,29 @@ Rails.application.routes.draw do
   resources :roles
 
   # Directory routes
-  resources :basic_searches, :only => [:index, :show] do
+  resources :basic_searches, only: %i[index show] do
     collection do
       get :search
     end
   end
-  resources :advanced_searches, :only => [:index, :show] do
+  resources :advanced_searches, only: %i[index show] do
     collection do
       get :search
     end
   end
 
   # Profile Settings route
-  resources :settings, :only => [:index]
-  
+  resources :settings, only: [:index]
+
   # Sessions routes
-  get "login", to: "sessions#new"
-  resources :sessions, :only => [:new]  # Add this for LinkedIn omniauth
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
+  get 'login', to: 'sessions#new'
+  resources :sessions, only: [:new] # Add this for LinkedIn omniauth
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
   # Admin page route
-  resources :admin, :only => [:index]
-  post "/admin/approve" => 'admin#approve', as: :approve
+  resources :admin, only: [:index]
+  post '/admin/approve' => 'admin#approve', as: :approve
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

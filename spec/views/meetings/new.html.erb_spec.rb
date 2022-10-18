@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "meetings/new", type: :view do
-  before(:each) do
+RSpec.describe('meetings/new', type: :view) do
+  before do
     assign(:meeting, Meeting.new(
-      name: "MyString"
-    ))
+                       name: 'MyString'
+                     )
+    )
   end
 
-  it "renders new meeting form" do
+  it 'renders new meeting form' do
     render
 
-    assert_select "form[action=?][method=?]", meetings_path, "post" do
-
-      assert_select "input[name=?]", "meeting[name]"
+    assert_select 'form[action=?][method=?]', meetings_path, 'post' do
+      assert_select 'input[name=?]', 'meeting[name]'
     end
   end
 end

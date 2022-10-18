@@ -7,7 +7,9 @@
 
 <p>
   <strong>Major:</strong>
-  <%= @user.major.name %>
+  <% if @user.major.present? %>
+    <%= @user.major.name %>
+  <% end %>
 </p>
 
 <p>
@@ -32,7 +34,7 @@
 
 <p>
   <strong>Job category:</strong>
-  <%= @user.alumnus.job_category.name %>
+  <%= @user.alumnus.job_category_name_if_present %>
 </p>
 
 <p>
@@ -61,7 +63,6 @@
 
 <% if Current.previous_path.start_with? "/advanced_searches/search" %>
   <!-- Make it easier for user to go back to previous search -->
-  <% puts "Hash: #{Current.previous_search}" %>
   <%= form_with url: search_advanced_searches_url, method: :get do |form| %>
     <% Current.previous_search.each do |param, value| %>
       <%= form.hidden_field param, value: value %>
