@@ -19,6 +19,8 @@ class SearchesController < ApplicationController
     private
 
     def search_params
-        params.require(:search).permit(:first_name, :last_name, :major, :graduation_year, :job_title, :employer)
+        puts(params[:major])
+        puts(params[:job_category])
+        params.require(:search).permit(:first_name, :last_name, :major, :graduation_year, :job_category, :job_title, :employer)
     end
 end

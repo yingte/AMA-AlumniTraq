@@ -5,7 +5,7 @@ class DirectoryController < ApplicationController
     def search
         if params[:search].present?
             alumni_role = Role.where(name: "Alumni").first
-            @alumni = User.where(["first_name LIKE ?", "%#{params[:search]}%"]).order(:last_name)
+            @alumni = User.keyword_search(params[:search]).order(:last_name)
             @alumni_info = Alumnus.joins(:user).order('users.last_name')
             # flash[:notice] = "No records found based on the search." if @alumni.blank?
         else
