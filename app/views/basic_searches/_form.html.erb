@@ -1,0 +1,6 @@
+<%= form_tag search_basic_searches_url, :method => 'get' do %>
+  <%= search_field_tag :keyword, params[:keyword] %>
+  <%= submit_tag 'Keyword Search' %>
+<% end %>
+
+<%= link_to "Advanced Search", advanced_searches_path %>

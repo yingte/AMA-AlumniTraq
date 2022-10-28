@@ -35,5 +35,8 @@
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
+<% if Current.user.is_admin? %>
+    <%= link_to 'Admin Approvals', admin_index_path %>
+    <br>
+<% end %>
+<%= link_to 'Edit Profile', edit_user_path(session[:user_id]) %>

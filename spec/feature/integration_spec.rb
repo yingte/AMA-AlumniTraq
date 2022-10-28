@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # Example
-RSpec.describe 'Creating a User', type: :feature do
-  scenario 'valid inputs' do
+RSpec.describe('Creating a User', type: :feature) do
+  it 'valid inputs' do
     visit new_user_path
     fill_in 'First name', with: 'Robin'
     fill_in 'Last name', with: 'Williams'
@@ -12,11 +14,11 @@ RSpec.describe 'Creating a User', type: :feature do
     fill_in 'Phone', with: '1234567890'
     click_on 'Create User'
     visit users_path
-    expect(page).to have_content('Robin')
-    expect(page).to have_content('Williams')
-    expect(page).to have_content('Computer Science')
-    expect(page).to have_content('2023')
-    expect(page).to have_content('robinwilliams@gmail.com')
-    expect(page).to have_content('123-456-7890')
+    expect(page).to(have_content('Robin'))
+    expect(page).to(have_content('Williams'))
+    expect(page).to(have_content('Computer Science'))
+    expect(page).to(have_content('2023'))
+    expect(page).to(have_content('robinwilliams@gmail.com'))
+    expect(page).to(have_content('123-456-7890'))
   end
 end

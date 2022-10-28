@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class JobCategoriesController < ApplicationController
-  before_action :set_job_category, only: %i[ show edit update destroy ]
+  before_action :set_job_category, only: %i[show edit update destroy]
   before_action :check_admin_authority
 
   # GET /job_categories or /job_categories.json
@@ -8,8 +10,7 @@ class JobCategoriesController < ApplicationController
   end
 
   # GET /job_categories/1 or /job_categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /job_categories/new
   def new
@@ -17,8 +18,7 @@ class JobCategoriesController < ApplicationController
   end
 
   # GET /job_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /job_categories or /job_categories.json
   def create
@@ -26,11 +26,11 @@ class JobCategoriesController < ApplicationController
 
     respond_to do |format|
       if @job_category.save
-        format.html { redirect_to job_category_url(@job_category), notice: "Job category was successfully created." }
-        format.json { render :show, status: :created, location: @job_category }
+        format.html { redirect_to(job_category_url(@job_category), notice: 'Job category was successfully created.') }
+        format.json { render(:show, status: :created, location: @job_category) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @job_category.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @job_category.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -39,39 +39,38 @@ class JobCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @job_category.update(job_category_params)
-        format.html { redirect_to job_category_url(@job_category), notice: "Job category was successfully updated." }
-        format.json { render :show, status: :ok, location: @job_category }
+        format.html { redirect_to(job_category_url(@job_category), notice: 'Job category was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @job_category) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @job_category.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @job_category.errors, status: :unprocessable_entity) }
       end
     end
   end
 
   # DELETE /job_categories/1 or /job_categories/1.json
   def destroy
-    @job_category.destroy
+    @job_category.destroy!
 
     respond_to do |format|
-      format.html { redirect_to job_categories_url, notice: "Job category was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(job_categories_url, notice: 'Job category was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_job_category
-      @job_category = JobCategory.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def job_category_params
-      params.require(:job_category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_job_category
+    @job_category = JobCategory.find(params[:id])
+  end
 
-    def check_admin_authority
-      if Current.user.role.id != 1
-        render_401()
-      end
-    end
+  # Only allow a list of trusted parameters through.
+  def job_category_params
+    params.require(:job_category).permit(:name)
+  end
+
+  def check_admin_authority
+    render_unauthorized unless Current.user.is_admin?
+  end
 end

@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @meeting %>
+
+<p>
+  <strong>Status: </strong>
+  <% if @event_attendee %>
+    Attending | 
+    <%= link_to "Take me off the list", @event_attendee, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+    Not Attending
+    <%= button_to "Count Me In!", event_attendees_path, method: :post, params: { user_id: Current.user.id, meeting_id: @meeting.id  } %>
+  <% end %>
+</p>
+
+<div>
+  <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
+  <%= link_to 'Back', Current.previous_path %>
+  <% if Current.user.is_admin? %>
+    | <%= link_to "Destroy this meeting", @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
