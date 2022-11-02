@@ -12,8 +12,8 @@
 
   <body>
     <% if Current.user %>
-      <nav class="navbar navbar-expand-lg" style="background-color: #500000;">
-        <div class="container-fluid" style="padding: 20px 20px 20px 0px;">
+      <nav class="navbar navbar-expand-lg" style="background-image: url('https://marcomm.tamu.edu/_files/img/work-with-us_2400.jpg');">
+        <div class="container-fluid" style="padding: 30px 30px 150px 30px;">
           <a class="navbar-brand"></a>
           <img src="https://images.squarespace-cdn.com/content/v1/568841be5a56682e0b8162f2/1510940137363-1T0H93GH67WNQO652JN2/amalogo.png?format=1500w" alt="Logo" class="main-text">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
                   <li><%= link_to 'Admin', admin_index_path, class: "nav-text" %></li>
                 </li>
               <% end %>
-              <li class="nav-item dropleft">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img
                     src="https://i.pinimg.com/564x/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.jpg"
@@ -45,9 +45,10 @@
                     loading="lazy"
                   />
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu dropdown-menu-end">
                   <li>
-                    <li><%= link_to "Settings", '/settings', class: "dropdown-item" %></li>
+                    <li><%= link_to "Settings", Current.user, class: "dropdown-item" %></li>
+                    
                   </li>
                   <li>
                     <li><%= button_to "Logout", logout_path, method: :delete, class: "dropdown-item" %></li>
