@@ -28,20 +28,20 @@
                 <li><%= link_to 'Calendar', '/meetings', class: "nav-text" %></li>
               </li>
               <li class="nav-item">
-                <li><%= link_to 'FAQ', '/faq, class: "nav-text" %></li>
+                <li><%= link_to 'FAQ', '/faq', class: "nav-text" %></li>
               </li>
               <% if Current.user.is_admin? %>
                 <li class="nav-item">
                   <li><%= link_to 'Admin', admin_index_path, class: "nav-text" %></li>
                 </li>
               <% end %>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropleft">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    src="https://i.pinimg.com/564x/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.jpg"
                     class="rounded-circle"
-                    height="25"
-                    alt="Black and White Portrait of a Man"
+                    height="35"
+                    alt="Profile Pic"
                     loading="lazy"
                   />
                 </a>
