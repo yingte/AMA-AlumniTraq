@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MeetingsController < ApplicationController
+  skip_before_action :set_smart_link, only: %i[destroy]
   before_action :set_meeting, only: %i[show edit update destroy]
   before_action :check_event_authority, except: %i[index show]
 
@@ -55,7 +56,7 @@ class MeetingsController < ApplicationController
     @meeting.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(meetings_url, notice: 'Meeting was successfully destroyed.') }
+      format.html { redirect_to(Current.previous_path, notice: 'Meeting was successfully destroyed.') }
       format.json { head(:no_content) }
     end
   end

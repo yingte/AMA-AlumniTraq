@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   skip_before_action :set_current_user, only: %i[new create]
+  skip_before_action :set_smart_link, only: %i[ update edit ]
   before_action :set_user, only: %i[show edit update destroy]
   before_action :check_admin_authority, only: %i[index destroy]
   helper_method :is_sign_up?
@@ -20,7 +21,13 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit; end
+  def edit 
+    if session[:user_id] == @user.id
+      Current.previous_path = "/users/" + String(@user.id)
+    else
+      Current.previous_path = "/admin"
+    end
+  end
 
   # POST /users or /users.json
   def create
@@ -65,7 +72,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         if session[:user_id] == @user.id
-          format.html { redirect_to(user_index_path, notice: 'Profile was successfully updated.') }
+          format.html { redirect_to(settings_url, notice: 'Profile was successfully updated.') }
         else
           format.html { redirect_to(admin_index_path, notice: 'User was successfully updated.') }
         end
