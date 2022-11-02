@@ -43,16 +43,14 @@
         <td><%= user.phone %></td>
         <td><%= link_to 'Edit', edit_user_path(user.id)%></td>
         <td><%= link_to 'Remove', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% if not user.is_approved %>
+        <td>
           <%= form_with url: "/admin/approve/", method: :post do |form| %>
-            <td>
               <%= form.hidden_field :user_id, value: user.id %>
               <div class="actions">
                 <%= form.submit "Approve"%>
               </div>
-            </td>
           <% end %>
-        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -12,7 +12,6 @@
 
   <body>
     <% if Current.user %>
-
       <nav class="navbar navbar-expand-lg" style="background-color: #500000;">
         <div class="container-fluid" style="padding: 20px 20px 20px 0px;">
           <a class="navbar-brand"></a>
@@ -28,6 +27,14 @@
               <li class="nav-item">
                 <li><%= link_to 'Calendar', '/meetings', class: "nav-text" %></li>
               </li>
+              <li class="nav-item">
+                <li><%= link_to 'FAQ', '/faq, class: "nav-text" %></li>
+              </li>
+              <% if Current.user.is_admin? %>
+                <li class="nav-item">
+                  <li><%= link_to 'Admin', admin_index_path, class: "nav-text" %></li>
+                </li>
+              <% end %>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img

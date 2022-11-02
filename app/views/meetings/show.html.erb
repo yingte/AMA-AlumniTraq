@@ -14,9 +14,10 @@
 </p>
 
 <div>
-  <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
-  <%= link_to 'Back', Current.previous_path %>
-  <% if Current.user.is_admin? %>
-    | <%= link_to "Destroy this meeting", @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if Current.user.is_admin? || Current.user.is_event_planner? %>
+    <%= link_to "Edit", edit_meeting_path(@meeting) %> |
+    <%= link_to "Destroy", @meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br>
   <% end %>
+  <%= link_to 'Back', Current.previous_path %>
 </div>
