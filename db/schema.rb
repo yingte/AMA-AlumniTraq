@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2022_10_17_203008) do
     t.text "availability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "job_category"
     t.index ["job_category_id"], name: "index_alumni_on_job_category_id"
     t.index ["user_id"], name: "index_alumni_on_user_id"
   end
@@ -98,7 +97,6 @@ ActiveRecord::Schema.define(version: 2022_10_17_203008) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "job_category"
   end
 
   create_table "users", force: :cascade do |t|
