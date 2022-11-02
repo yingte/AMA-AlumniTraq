@@ -12,18 +12,48 @@
 
   <body>
     <% if Current.user %>
-      <nav>
-        <ul>
-          <!-- This puts the navbar on each page -->
-          <li><%= link_to 'Directory', '/' %></li>
-          <li><%= link_to 'Calendar', '/meetings' %></li>
-          <!-- Put Admin if role == admin -->
-          <li style="display: flex; color: #666">
-            <%= link_to("#{Current.user.first_name} #{Current.user.last_name}", '/settings', class: "profile-tab") %> | 
-            <%= button_to("Logout", logout_path, method: :delete) %>
-          </li>
-        </ul>
+
+      <nav class="navbar navbar-expand-lg" style="background-color: #500000;">
+        <div class="container-fluid" style="padding: 20px 20px 20px 0px;">
+          <a class="navbar-brand"></a>
+          <img src="https://images.squarespace-cdn.com/content/v1/568841be5a56682e0b8162f2/1510940137363-1T0H93GH67WNQO652JN2/amalogo.png?format=1500w" alt="Logo" class="main-text">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse go-right" id="navbarText">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <li><%= link_to 'Directory', '/', class: "nav-text" %></li>
+              </li>
+              <li class="nav-item">
+                <li><%= link_to 'Calendar', '/meetings', class: "nav-text" %></li>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    class="rounded-circle"
+                    height="25"
+                    alt="Black and White Portrait of a Man"
+                    loading="lazy"
+                  />
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <li><%= link_to "Settings", '/settings', class: "dropdown-item" %></li>
+                  </li>
+                  <li>
+                    <li><%= button_to "Logout", logout_path, method: :delete, class: "dropdown-item" %></li>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          </a>
+        </div>
       </nav>
+
+  
     <% end %>
 
     <%= yield %>
