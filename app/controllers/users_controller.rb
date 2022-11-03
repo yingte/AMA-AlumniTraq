@@ -13,7 +13,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1 or /users/1.json
-  def show; end
+  def show
+    Current.previous_path = "/settings"
+  end
 
   # GET /users/new
   def new
@@ -85,7 +87,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
+    @user.destroy
 
     respond_to do |format|
       format.html { redirect_to(Current.previous_path, notice: 'User was successfully destroyed.') }

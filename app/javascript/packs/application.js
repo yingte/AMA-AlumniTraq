@@ -10,7 +10,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap/dist/css"
 import "bootstrap/dist/js"
-
+require("jquery")
+require("jquery-ui")
+import $ from 'jquery'
+global.$ = jQuery
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
