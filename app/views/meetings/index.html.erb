@@ -12,6 +12,6 @@
   <% end %>
 <% end %>
 
-<% if Current.user.is_admin? %>
+<% if Current.user.is_admin? || Current.user.is_event_planner? %>
   <%= link_to "Create a New meeting", new_meeting_path %>
 <% end %>
