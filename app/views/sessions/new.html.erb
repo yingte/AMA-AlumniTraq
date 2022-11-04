@@ -1,5 +1,11 @@
+<div class="video-background">
+    <div class="video-foreground">
+        <iframe src="//player.vimeo.com/video/194104442?api=1&amp;background=1" frameborder="0" allowfullscreen class="background-video ready"></iframe>
+    </div>
+</div>
+
 <main id="login-main">
-    <div id="login-container">
+    <div id="login-container" style="z-index: 1;">
         <%= form_with url: login_path do |form| %>
             <h1>Login</h1>
 
@@ -35,3 +41,4 @@
         <%= button_to "Continue with LinkedIn", user_linkedin_omniauth_authorize_path, class: 'oauth-button' %>
     </div>
 </main>
+
