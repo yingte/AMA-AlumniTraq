@@ -38,6 +38,8 @@ jobs:
         run: bundle exec rake app:update:bin
       # Add or replace database setup steps here
       - name: Set up database schema
+        run: bin/rails db:schema:load
+      - name: Make migrations
         run: bin/rails db:migrate RAILS_ENV=test
       - name: Load the seed
         run: bin/rails db:seed RAILS_ENV=test
