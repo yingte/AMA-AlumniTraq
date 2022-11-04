@@ -7,7 +7,7 @@ class AlumniController < ApplicationController
 
   # GET /alumni or /alumni.json
   def index
-    @users = User.where('role_id = 3').order(:last_name)
+    @users = User.alumni_users.order(:last_name)
   end
 
   # GET /alumni/1 or /alumni/1.json

@@ -12,7 +12,12 @@ class SessionsController < ApplicationController
 
     if user.present? && user.authenticate(params[:password])
       # If email exists and the password digest matches
-      session[:user_id] = user.id
+      if Rails.env.test?
+        ENV['user_id'] = String(user.id)
+      else
+        session[:user_id] = user.id
+      end
+      
       redirect_to(root_path, notice: 'Logged in successfully')
     else
       flash[:alert] = 'Invalid email or password'
@@ -23,7 +28,11 @@ class SessionsController < ApplicationController
 
   def destroy
     # Remove user from session
-    session[:user_id] = nil
+    if Rails.env.test?
+      ENV['user_id'] = nil
+    else
+      session[:user_id] = nil
+    end
 
     # Redirect to login page
     redirect_to(login_path, notice: 'Logged out')

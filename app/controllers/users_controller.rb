@@ -45,15 +45,24 @@ class UsersController < ApplicationController
             end
             format.json { render(:new, status: :created, location: @user) }
           end
-        elsif @user.is_admin?
-          # Admin, show the confirmation
-          format.html { redirect_to(user_url(@user), notice: 'User was successfully created.') }
-          format.json { render(:show, status: :created, location: @user) }
         else
-          # Standard role, just login
-          format.html { redirect_to(root_path, notice: "Logged in as #{@user.first_name} #{@user.last_name}") }
+          # See if user is admin (need special case for RSpec)
+          if Rails.env.test? && ENV['user_id']
+            Current.user = User.find_by(id: Integer(ENV['user_id']))
+          end
+          
+          if Current.user.is_admin?
+            # Admin, show the confirmation
+            format.html { redirect_to(user_url(@user), notice: 'User was successfully created.') }
+            format.json { render(:show, status: :created, location: @user) }
+          else
+            # Standard role, just login
+            format.html { redirect_to(root_path, notice: "Logged in as #{@user.first_name} #{@user.last_name}") }
+          end
         end
+
       else
+        # Failed to save user
         format.html { render(:new, status: :unprocessable_entity) }
         format.json { render(json: @user.errors, status: :unprocessable_entity) }
       end
