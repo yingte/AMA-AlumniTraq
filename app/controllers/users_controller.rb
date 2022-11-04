@@ -34,7 +34,13 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
+    if is_sign_up?
+      @user.save
+      respond_to do |format|
+        format.html { redirect_to(login_path, notice: "Waiting Admin Approval")}
+      end
+      return
+    end
     respond_to do |format|
       if @user.save
         # Login the new user not an admin
@@ -87,7 +93,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
+    @user.destroy!
 
     respond_to do |format|
       format.html { redirect_to(Current.previous_path, notice: 'User was successfully destroyed.') }
