@@ -1,22 +1,20 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe('job_categories/index', type: :view) do
-  before do
+RSpec.describe "job_categories/index", type: :view do
+  before(:each) do
     assign(:job_categories, [
       JobCategory.create!(
-        name: 'Name'
+        name: "Name"
       ),
       JobCategory.create!(
-        name: 'Name'
+        name: "Name"
       )
-    ]
-    )
+    ])
   end
 
-  it 'renders a list of job_categories' do
+  it "renders a list of job_categories" do
     render
-    assert_select 'tr>td', text: 'Name'.to_s, count: 2
+    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
   end
 end

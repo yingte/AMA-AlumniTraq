@@ -1,20 +1,22 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe('majors/edit', type: :view) do
-  before do
-    @major = assign(:major, Major.create!(
-                              name: 'MyString'
-                            )
+RSpec.describe "majors/edit", type: :view do
+  let(:major) {
+    Major.create!(
+      name: "MyString"
     )
+  }
+
+  before(:each) do
+    assign(:major, major)
   end
 
-  it 'renders the edit major form' do
+  it "renders the edit major form" do
     render
 
-    assert_select 'form[action=?][method=?]', major_path(@major), 'post' do
-      assert_select 'input[name=?]', 'major[name]'
+    assert_select "form[action=?][method=?]", major_path(major), "post" do
+
+      assert_select "input[name=?]", "major[name]"
     end
   end
 end

@@ -2,12 +2,12 @@
 
 <p>
   <strong>Event:</strong>
-  <%= @event_attendee.meeting_id %>
+  <%= @event_attendee.meeting.name %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @event_attendee.user_id %>
+  <%= @event_attendee.user.first_name %> <%= @event_attendee.user.last_name %>
 </p>
 
 <%= link_to 'Edit', edit_event_attendee_path(@event_attendee) %> |
