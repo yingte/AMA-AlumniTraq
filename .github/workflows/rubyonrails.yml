@@ -11,7 +11,7 @@ on:
   pull_request:
     branches: [ "main", "test" ]
 jobs:
-  test:
+  rspec-test:
     runs-on: ubuntu-latest
     services:
       postgres:

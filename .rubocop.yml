@@ -38,7 +38,6 @@ AllCops:
         - "**/Rakefile"
         - "**/rails"
         - "**/vendor/**/*"
-        - "**/spec_helper.rb"
         - "node_modules/**/*"
         - "bin/*"
         - "config/**/*"
@@ -48,7 +47,7 @@ AllCops:
         - !ruby/regexp /old_and_unused\.rb$/
         - 'tmp/**/*'
         - '.git/**/*'
-        - "spec/unit/*"
+        - "spec/**/*"
 
 
 ###########################################################
@@ -308,6 +307,9 @@ Naming/InclusiveLanguage: # (new in 1.18)
   Enabled: true
 
 Naming/PredicateName:
+  Enabled: false
+
+Naming/AccessorMethodName:
   Enabled: false
 
 ###########################################################

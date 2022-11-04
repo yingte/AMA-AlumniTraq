@@ -33,32 +33,9 @@ class UsersController < ApplicationController
 
         # If new user is an alumnus, redirect to collect alumnus-specific information
         if @user.is_alumnus?
-          # Create new alumnus and set the FK to the new user
-          @alumnus = Alumnus.new
-          @alumnus.user = @user
-          if @alumnus.save
-            format.html { redirect_to(edit_alumnus_path(@alumnus), notice: 'User was successfully created.') }
-            format.json { render(:update, status: :created, location: @user) }
-          else
-            format.html do
-              redirect_to(new_alumnus_path, notice: "User was successfully created but couldn't save alumnus.")
-            end
-            format.json { render(:new, status: :created, location: @user) }
-          end
+          handle_create_alumnus(format)
         else
-          # See if user is admin (need special case for RSpec)
-          if Rails.env.test? && ENV['user_id']
-            Current.user = User.find_by(id: Integer(ENV['user_id']))
-          end
-          
-          if Current.user.is_admin?
-            # Admin, show the confirmation
-            format.html { redirect_to(user_url(@user), notice: 'User was successfully created.') }
-            format.json { render(:show, status: :created, location: @user) }
-          else
-            # Standard role, just login
-            format.html { redirect_to(root_path, notice: "Logged in as #{@user.first_name} #{@user.last_name}") }
-          end
+          handle_normal_create(format)
         end
 
       else
@@ -111,5 +88,34 @@ class UsersController < ApplicationController
 
   def check_admin_authority
     render_unauthorized unless Current.user.is_admin?
+  end
+
+  def handle_create_alumnus(format)
+    # Create new alumnus and set the FK to the new user
+    @alumnus = Alumnus.new
+    @alumnus.user = @user
+    if @alumnus.save
+      format.html { redirect_to(edit_alumnus_path(@alumnus), notice: 'User was successfully created.') }
+      format.json { render(:update, status: :created, location: @user) }
+    else
+      format.html do
+        redirect_to(new_alumnus_path, notice: "User was successfully created but couldn't save alumnus.")
+      end
+      format.json { render(:new, status: :created, location: @user) }
+    end
+  end
+
+  def handle_normal_create(format)
+    # See if user is admin (need special case for RSpec)
+    Current.user = User.find_by(id: Integer(ENV['user_id'])) if Rails.env.test? && ENV['user_id']
+
+    if Current.user.is_admin?
+      # Admin, show the confirmation
+      format.html { redirect_to(user_url(@user), notice: 'User was successfully created.') }
+      format.json { render(:show, status: :created, location: @user) }
+    else
+      # Standard role, just login
+      format.html { redirect_to(root_path, notice: "Logged in as #{@user.first_name} #{@user.last_name}") }
+    end
   end
 end

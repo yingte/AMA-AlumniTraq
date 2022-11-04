@@ -10,22 +10,20 @@ class ApplicationController < ActionController::Base
       if ENV['user_id']
         Current.user = User.find_by(id: Integer(ENV['user_id']))
       else
-        redirect_to login_path
-      end
-    else
-      if session[:user_id]
-        Current.user = User.find_by(id: session[:user_id])
-
-        if Current.user.nil?
-          # Remove user from session
-          session[:user_id] = nil
-
-          # Redirect to login page
-          redirect_to(login_path)
-        end
-      else
         redirect_to(login_path)
       end
+    elsif session[:user_id]
+      Current.user = User.find_by(id: session[:user_id])
+
+      if Current.user.nil?
+        # Remove user from session
+        session[:user_id] = nil
+
+        # Redirect to login page
+        redirect_to(login_path)
+      end
+    else
+      redirect_to(login_path)
     end
   end
 
