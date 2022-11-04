@@ -36,6 +36,9 @@ jobs:
       # Try to get permission to run bin/rails
       - name: Update bin
         run: bundle exec rake app:update:bin
+      # Install js dependencies
+      - name: Install JS stuffs
+        run: yarn install
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
