@@ -19,16 +19,20 @@ RSpec.describe('/majors', type: :request) do
   # Major. As you add validations to Major, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'Valid name'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil
+    }
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Major.create!(valid_attributes)
+      Major.find_or_create_by!(valid_attributes)
       get majors_url
       expect(response).to(be_successful)
     end
@@ -36,7 +40,7 @@ RSpec.describe('/majors', type: :request) do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      major = Major.create!(valid_attributes)
+      major = Major.find_or_create_by!(valid_attributes)
       get major_url(major)
       expect(response).to(be_successful)
     end
@@ -51,7 +55,7 @@ RSpec.describe('/majors', type: :request) do
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      major = Major.create!(valid_attributes)
+      major = Major.find_or_create_by!(valid_attributes)
       get edit_major_url(major)
       expect(response).to(be_successful)
     end
@@ -80,7 +84,7 @@ RSpec.describe('/majors', type: :request) do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post majors_url, params: { major: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('New Major'))
       end
     end
   end
@@ -92,14 +96,14 @@ RSpec.describe('/majors', type: :request) do
       end
 
       it 'updates the requested major' do
-        major = Major.create!(valid_attributes)
+        major = Major.find_or_create_by!(valid_attributes)
         patch major_url(major), params: { major: new_attributes }
         major.reload
         skip('Add assertions for updated state')
       end
 
       it 'redirects to the major' do
-        major = Major.create!(valid_attributes)
+        major = Major.find_or_create_by!(valid_attributes)
         patch major_url(major), params: { major: new_attributes }
         major.reload
         expect(response).to(redirect_to(major_url(major)))
@@ -108,23 +112,23 @@ RSpec.describe('/majors', type: :request) do
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        major = Major.create!(valid_attributes)
+        major = Major.find_or_create_by!(valid_attributes)
         patch major_url(major), params: { major: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('Editing Major'))
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested major' do
-      major = Major.create!(valid_attributes)
+      major = Major.find_or_create_by!(valid_attributes)
       expect do
         delete(major_url(major))
       end.to(change(Major, :count).by(-1))
     end
 
     it 'redirects to the majors list' do
-      major = Major.create!(valid_attributes)
+      major = Major.find_or_create_by!(valid_attributes)
       delete major_url(major)
       expect(response).to(redirect_to(majors_url))
     end

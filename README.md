@@ -29,7 +29,9 @@ Download this code repository by using git:
 
 An RSpec test suite is available and can be ran using:
 
-  `rspec spec/`
+  `rails db:migrate RAILS_ENV=test`
+  `rails db:seed RAILS_ENV=test`
+  `rspec spec .`
 
 ## Execute Code ##
 
@@ -40,7 +42,7 @@ Run the following code in Powershell if using windows or the terminal using Linu
   `docker run --rm -it --volume "$(pwd):/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
 
   or for Windows...
-  `docker run --rm -it --volume "${PWD}:/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
+  `docker run --rm -it --volume "${PWD}:/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest`
 
   `cd rails_app`
 
@@ -49,13 +51,13 @@ Install the app
   `bundle install && rails webpacker:install && rails db:create && db:migrate`
 
 Run the app
-  `rails server --binding:0.0.0.0`
+  `rails server --binding=0.0.0.0`
 
 The application can be seen using a browser and navigating to <http://localhost:3000/>
 
 ## Environmental Variables/Files ##
 
-No environmental variables or files were used
+A master key for decrypting the credentials is stored locally and on Heroku
 
 ## Deployment ##
 

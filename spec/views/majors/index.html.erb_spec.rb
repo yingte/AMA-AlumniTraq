@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe('majors/index', type: :view) do
   before do
     assign(:majors, [
-      Major.create!(
+      Major.find_or_create_by!(
         name: 'Name'
       ),
-      Major.create!(
+      Major.find_or_create_by!(
         name: 'Name'
       )
     ]
@@ -17,6 +17,7 @@ RSpec.describe('majors/index', type: :view) do
 
   it 'renders a list of majors' do
     render
-    assert_select 'tr>td', text: 'Name'.to_s, count: 2
+    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
   end
 end

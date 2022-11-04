@@ -32,7 +32,7 @@
     <div class="field">
       <%= form.label :role_name %>
       <!-- Changed role_id to role_name -->
-      <%= form.select :role_id, Role.where.not(id: 1).order(:name).map { |role| [role.name, role.id] }, include_blank: false, id: "id_of_the_role_id_select_box" %>
+      <%= form.select :role_id, Role.unprivileged.order(:name).map { |role| [role.name, role.id] }, include_blank: false, id: "id_of_the_role_id_select_box" %>
     </div>
   <%elsif Current.user.is_admin? && session[:user_id] != user.id%>
     <div class="field">

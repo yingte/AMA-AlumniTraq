@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe('majors/show', type: :view) do
   before do
-    @major = assign(:major, Major.create!(
-                              name: 'Name'
-                            )
+    assign(:major, Major.find_or_create_by!(
+                     name: 'Name'
+                   )
     )
   end
 

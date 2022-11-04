@@ -15,20 +15,26 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe('/job_categories', type: :request) do
+  admin_user = get_admin_user
+  login_user(admin_user)
   # This should return the minimal set of attributes required to create a valid
   # JobCategory. As you add validations to JobCategory, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'Valid name'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil
+    }
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      JobCategory.create!(valid_attributes)
+      JobCategory.find_or_create_by!(valid_attributes)
       get job_categories_url
       expect(response).to(be_successful)
     end
@@ -36,7 +42,7 @@ RSpec.describe('/job_categories', type: :request) do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      job_category = JobCategory.create!(valid_attributes)
+      job_category = JobCategory.find_or_create_by!(valid_attributes)
       get job_category_url(job_category)
       expect(response).to(be_successful)
     end
@@ -51,7 +57,7 @@ RSpec.describe('/job_categories', type: :request) do
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      job_category = JobCategory.create!(valid_attributes)
+      job_category = JobCategory.find_or_create_by!(valid_attributes)
       get edit_job_category_url(job_category)
       expect(response).to(be_successful)
     end
@@ -80,7 +86,7 @@ RSpec.describe('/job_categories', type: :request) do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post job_categories_url, params: { job_category: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('New Job Category'))
       end
     end
   end
@@ -92,14 +98,14 @@ RSpec.describe('/job_categories', type: :request) do
       end
 
       it 'updates the requested job_category' do
-        job_category = JobCategory.create!(valid_attributes)
+        job_category = JobCategory.find_or_create_by!(valid_attributes)
         patch job_category_url(job_category), params: { job_category: new_attributes }
         job_category.reload
         skip('Add assertions for updated state')
       end
 
       it 'redirects to the job_category' do
-        job_category = JobCategory.create!(valid_attributes)
+        job_category = JobCategory.find_or_create_by!(valid_attributes)
         patch job_category_url(job_category), params: { job_category: new_attributes }
         job_category.reload
         expect(response).to(redirect_to(job_category_url(job_category)))
@@ -108,23 +114,23 @@ RSpec.describe('/job_categories', type: :request) do
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        job_category = JobCategory.create!(valid_attributes)
+        job_category = JobCategory.find_or_create_by!(valid_attributes)
         patch job_category_url(job_category), params: { job_category: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('Editing Job Category'))
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested job_category' do
-      job_category = JobCategory.create!(valid_attributes)
+      job_category = JobCategory.find_or_create_by!(valid_attributes)
       expect do
         delete(job_category_url(job_category))
       end.to(change(JobCategory, :count).by(-1))
     end
 
     it 'redirects to the job_categories list' do
-      job_category = JobCategory.create!(valid_attributes)
+      job_category = JobCategory.find_or_create_by!(valid_attributes)
       delete job_category_url(job_category)
       expect(response).to(redirect_to(job_categories_url))
     end

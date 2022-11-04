@@ -5,7 +5,14 @@ class ApplicationController < ActionController::Base
   before_action :set_smart_link
 
   def set_current_user
-    if session[:user_id]
+    if Rails.env.test?
+      # Just check if current user is set
+      if ENV['user_id']
+        Current.user = User.find_by(id: Integer(ENV['user_id']))
+      else
+        redirect_to(login_path)
+      end
+    elsif session[:user_id]
       Current.user = User.find_by(id: session[:user_id])
 
       if Current.user.nil?
@@ -33,7 +40,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_smart_link
-    Current.previous_path = session[:current_path]
-    session[:current_path] = request.path
+    if Rails.env.test?
+      Current.previous_path = ENV['current_path']
+      ENV['current_path'] = request.path
+    else
+      Current.previous_path = session[:current_path]
+      session[:current_path] = request.path
+    end
   end
 end

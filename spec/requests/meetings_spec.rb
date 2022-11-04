@@ -19,16 +19,26 @@ RSpec.describe('/meetings', type: :request) do
   # Meeting. As you add validations to Meeting, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      name: 'Test Meeting',
+      start_time: 'Thu, 03 Nov 2022 23:40:00.000000000 CDT -05:00',
+      end_time: 'Thu, 03 Nov 2022 23:59:00.000000000 CDT -05:00',
+      description: 'Test description'
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      name: nil,
+      start_time: 'Thu, 03 Nov 2022 23:40:00.000000000 CDT -05:00',
+      end_time: 'Thu, 03 Nov 2022 23:59:00.000000000 CDT -05:00',
+      description: 'Test description'
+    }
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Meeting.create!(valid_attributes)
+      Meeting.find_or_create_by!(valid_attributes)
       get meetings_url
       expect(response).to(be_successful)
     end
@@ -36,7 +46,7 @@ RSpec.describe('/meetings', type: :request) do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      meeting = Meeting.create!(valid_attributes)
+      meeting = Meeting.find_or_create_by!(valid_attributes)
       get meeting_url(meeting)
       expect(response).to(be_successful)
     end
@@ -51,7 +61,7 @@ RSpec.describe('/meetings', type: :request) do
 
   describe 'GET /edit' do
     it 'renders a successful response' do
-      meeting = Meeting.create!(valid_attributes)
+      meeting = Meeting.find_or_create_by!(valid_attributes)
       get edit_meeting_url(meeting)
       expect(response).to(be_successful)
     end
@@ -80,7 +90,7 @@ RSpec.describe('/meetings', type: :request) do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post meetings_url, params: { meeting: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('New Meeting'))
       end
     end
   end
@@ -92,14 +102,14 @@ RSpec.describe('/meetings', type: :request) do
       end
 
       it 'updates the requested meeting' do
-        meeting = Meeting.create!(valid_attributes)
+        meeting = Meeting.find_or_create_by!(valid_attributes)
         patch meeting_url(meeting), params: { meeting: new_attributes }
         meeting.reload
         skip('Add assertions for updated state')
       end
 
       it 'redirects to the meeting' do
-        meeting = Meeting.create!(valid_attributes)
+        meeting = Meeting.find_or_create_by!(valid_attributes)
         patch meeting_url(meeting), params: { meeting: new_attributes }
         meeting.reload
         expect(response).to(redirect_to(meeting_url(meeting)))
@@ -108,23 +118,23 @@ RSpec.describe('/meetings', type: :request) do
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        meeting = Meeting.create!(valid_attributes)
+        meeting = Meeting.find_or_create_by!(valid_attributes)
         patch meeting_url(meeting), params: { meeting: invalid_attributes }
-        expect(response).to(be_successful)
+        expect(response.body).to(include('Editing Meeting'))
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested meeting' do
-      meeting = Meeting.create!(valid_attributes)
+      meeting = Meeting.find_or_create_by!(valid_attributes)
       expect do
         delete(meeting_url(meeting))
       end.to(change(Meeting, :count).by(-1))
     end
 
     it 'redirects to the meetings list' do
-      meeting = Meeting.create!(valid_attributes)
+      meeting = Meeting.find_or_create_by!(valid_attributes)
       delete meeting_url(meeting)
       expect(response).to(redirect_to(meetings_url))
     end

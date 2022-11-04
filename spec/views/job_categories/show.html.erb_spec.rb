@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe('job_categories/show', type: :view) do
   before do
-    @job_category = assign(:job_category, JobCategory.create!(
-                                            name: 'Name'
-                                          )
+    assign(:job_category, JobCategory.find_or_create_by!(
+                            name: 'Name'
+                          )
     )
   end
 
