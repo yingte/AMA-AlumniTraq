@@ -54,7 +54,7 @@
   <strong>Social Media:</strong>
   <ul>
     <% @user.alumnus.media_handles.each do |handle| %>
-      <li><%= link_to handle.platform, handle.link, target: :_blank %></li>
+      <li><%= button_to handle.platform, handle.link, method: :get %></li>
     <% end %>
   </ul>
 </p>
