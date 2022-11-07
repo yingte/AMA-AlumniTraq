@@ -21,5 +21,10 @@ module AlumniTraq
     config.time_zone = 'Central Time (US & Canada)'
     config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configuration for spanish translation
+    config.i18n.available_locales = [:en, :es]
+    config.i18n.default_locale = :en
+    config.i18n.fallbacks = true
   end
 end

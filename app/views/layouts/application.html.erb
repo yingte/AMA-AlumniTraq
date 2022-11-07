@@ -20,19 +20,19 @@
       <nav>
         <ul>
           <!-- This puts the navbar on each page -->
-          <li><%= link_to 'Directory', '/' %></li>
-          <li><%= link_to 'Calendar', '/meetings' %></li>
+          <li><%= link_to t("directory"), '/' %></li>
+          <li><%= link_to t("calendar"), '/meetings' %></li>
           <li><%= link_to 'FAQ', '/faq' %></li>
 
           <!-- Put Admin if role == admin -->
           <% if Current.user.is_admin? %>
-            <li><%= link_to 'Admin', admin_index_path %></li>
+            <li><%= link_to t("admin"), admin_index_path %></li>
           <% end %>
 
           <!-- User's name and option to logout -->
           <li style="display: flex; color: #666">
             <%= link_to("#{Current.user.first_name} #{Current.user.last_name}", Current.user, class: "profile-tab") %> | 
-            <%= button_to("Logout", logout_path, method: :delete) %>
+            <%= button_to(t("logout"), logout_path, method: :delete) %>
           </li>
 
           <div id="google_translate_element"></div>
@@ -50,6 +50,12 @@
           </script>
           
         </ul>
+        <!--
+        <ul>
+          <li><%= link_to 'English', url_for( :lang => 'en') %></li>
+          <li><%= link_to 'Español', url_for( :lang => 'es') %></li>
+        </ul>
+        -->
       </nav>
     <% end %>
 
