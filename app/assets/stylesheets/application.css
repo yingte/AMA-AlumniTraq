@@ -57,3 +57,28 @@ nav li form input:hover {
 .profile-tab {
     padding: 0 4px;
 }
+
+.main-text {
+    width: 410px;
+}
+
+.go-right {
+    justify-content: flex-end
+}
+
+.nav-text {
+    font-family: "proxima-nova","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 17px;
+    letter-spacing: 1.78px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    color: #fff !important;
+
+    display: block !important;
+    padding: 0.75em 1em !important;
+}
