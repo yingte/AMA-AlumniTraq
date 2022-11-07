@@ -15,10 +15,6 @@ class SessionsController < ApplicationController
       if user.is_approved
         session[:user_id] = user.id
         redirect_to(root_path, notice: 'Logged in successfully')
-      else
-        flash[:alert] = 'Waiting Approval from Admin'
-        @email = params[:email]
-        render(:new)
       end
     else
       flash[:alert] = 'Invalid email or password'
