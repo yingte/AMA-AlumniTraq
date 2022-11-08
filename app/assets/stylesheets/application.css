@@ -90,5 +90,8 @@ nav li form input:hover {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 2rem;
-    width: 8em
+}
+
+#directory-table {
+    table-layout: fixed;
 }
