@@ -1,21 +1,23 @@
+<div class="container">
+  <%= form_tag search_basic_searches_url, :method => 'get' do %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-basic-search-tab" data-bs-toggle="tab" href="#nav-basic-search" role="tab" aria-controls="nav-basic-search" aria-selected="true">Keyword Search</a>
+          <a class="nav-link" id="nav-advanced-search-tab" href="/advanced_searches" role="tab" aria-controls="nav-advanced-search" aria-selected="false">Advanced Search</a>
+        </div>
 
-<%= form_tag search_basic_searches_url, :method => 'get' do %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-link active" id="nav-basic-search-tab" data-bs-toggle="tab" href="#nav-basic-search" role="tab" aria-controls="nav-basic-search" aria-selected="true">Keyword Search</a>
-      <a class="nav-link" id="nav-advanced-search-tab" data-bs-toggle="tab" href="#nav-advanced-search" role="tab" aria-controls="nav-advanced-search" aria-selected="false">Advanced Search</a>
+        <div class="tab-content pt-3" id="nav-tabContent">
+          <div class="tab-pane fade show active pt-0" id="nav-basic-search" role="tabpanel" aria-labelledby="nav-basic-search-tab">
+            <div class="hstack gap-3">
+              <%= search_field_tag :keyword, params[:keyword], class: "form-control form-control-lg rounded", placeholder: "Enter Keyword"%>
+              <%= submit_tag 'Search', class: "btn btn-outline-primary" %>
+              <a class="btn btn-outline-dark" href="/">Reset</a>
+            </div>
+          </div
+        </div>
+      </div>
     </div>
-  </nav>
-
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-basic-search" role="tabpanel" aria-labelledby="nav-basic-search-tab">
-      <%= search_field_tag :keyword, params[:keyword], class: "form-label rounded", placeholder: "Search"%>
-      <%= submit_tag 'Keyword Search', class: "btn btn-outline-primary" %>
-    </div>
-    
-    <div class="tab-pane fade" id="nav-advanced-search" role="tabpanel" aria-labelledby="nav-advanced-search-tab">
-      <%= link_to "Advanced Search", advanced_searches_path %>
-    </div>
-  </div>
-<% end %> 
+  <% end %> 
+</div>
 

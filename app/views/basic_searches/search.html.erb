@@ -1,11 +1,12 @@
-<h1><%= t("directory") %></h1>
-<%= render 'form' %>
+<div class="container">
+  <h1><%= t("directory") %></h1>
+  <%= render 'form' %>
 
-<h3><%= t(".found") %> <%= @results.size %> <%= t(".matches") %> </h3>
+  <h3><%= t(".found") %> <%= @results.size %> <%= t(".matches") %> </h3>
 
-<table>
-  <thead>
-    <tr>
+  <table class="table table-hover align-middle bg-white", id="directory-table">
+    <thead class="bg-light">
+      <tr>
       <th><%= t(".first_name") %></th>
       <th><%= t(".last_name") %></th>
       <th><%= t(".major") %></th>
@@ -14,21 +15,24 @@
       <th><%= t(".job_title") %></th>
       <th><%= t(".employer") %></th>
       <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @results.each do |user| %>
-      <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.major.name %></td>
-        <td><%= user.graduation_year %></td>
-        <td><%= user.alumnus.job_category_name_if_present %></td>
-        <td><%= user.alumnus.job_title %></td>
-        <td><%= user.alumnus.employer %></td>
-        <td><%= link_to 'View', '/basic_searches/' + String(user.id) %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <div class="d-flex align-items-center" >
+        <% @results.each do |user| %>
+          <tr id="directory-info">
+            <td style="font-family: adobe-garamond-pro"><%= user.first_name %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.last_name %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.major.name %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.graduation_year %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.alumnus.job_category_name_if_present %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.alumnus.job_title %></td>
+            <td style="font-family: adobe-garamond-pro"><%= user.alumnus.employer %></td>
+            <td style="font-family: adobe-garamond-pro"><%= link_to 'View', '/basic_searches/' + String(user.id) %></td>
+          </tr>
+        <% end %>
+      </div>
+    </tbody>
+  </table>
+</div>
+
