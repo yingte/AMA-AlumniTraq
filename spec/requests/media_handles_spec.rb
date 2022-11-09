@@ -100,14 +100,19 @@ RSpec.describe('/media_handles', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          alumnus_id: alumnus_info.id,
+          platform: 'Facebook',
+          link: 'https://www.facebook.com/profile.php?id=100086613830827'
+        }
       end
 
       it 'updates the requested media_handle' do
         media_handle = MediaHandle.find_or_create_by!(valid_attributes)
         patch media_handle_url(media_handle), params: { media_handle: new_attributes }
         media_handle.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('https://www.facebook.com/profile.php?id=100086613830827'))
       end
 
       it 'redirects to the media_handle' do

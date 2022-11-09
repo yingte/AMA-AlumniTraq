@@ -11,7 +11,6 @@ RSpec.describe('users/edit', type: :view) do
   let(:user) do
     User.find_or_create_by!(
       email: 'member@test.com',
-      password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
       role_id: 2,
       first_name: 'Test',
       last_name: 'User',

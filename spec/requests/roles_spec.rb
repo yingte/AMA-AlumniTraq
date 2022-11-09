@@ -92,14 +92,17 @@ RSpec.describe('/roles', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'Valid name2'
+        }
       end
 
       it 'updates the requested role' do
         role = Role.find_or_create_by!(valid_attributes)
         patch role_url(role), params: { role: new_attributes }
         role.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('Valid name2'))
       end
 
       it 'redirects to the role' do

@@ -98,14 +98,20 @@ RSpec.describe('/meetings', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'Test Meeting',
+          start_time: 'Thu, 03 Nov 2022 23:40:00.000000000 CDT -05:00',
+          end_time: 'Thu, 03 Nov 2022 23:59:00.000000000 CDT -05:00',
+          description: 'Test description2'
+        }
       end
 
       it 'updates the requested meeting' do
         meeting = Meeting.find_or_create_by!(valid_attributes)
         patch meeting_url(meeting), params: { meeting: new_attributes }
         meeting.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('Test description2'))
       end
 
       it 'redirects to the meeting' do

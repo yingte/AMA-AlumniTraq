@@ -24,7 +24,6 @@ RSpec.describe('/users', type: :request) do
   let(:valid_attributes) do
     {
       email: 'member@test.com',
-      password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
       role_id: 2,
       first_name: 'Test',
       last_name: 'User',
@@ -38,8 +37,6 @@ RSpec.describe('/users', type: :request) do
   let(:valid_attributes_new) do
     {
       email: 'member@test.com',
-      password: 'password',
-      password_confirmation: 'password',
       role_id: 2,
       first_name: 'Test',
       last_name: 'User',
@@ -53,7 +50,6 @@ RSpec.describe('/users', type: :request) do
   let(:invalid_attributes) do
     {
       email: 'member@test.com',
-      password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
       role_id: 2,
       first_name: nil,
       last_name: nil,
@@ -130,14 +126,24 @@ RSpec.describe('/users', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          email: 'member@test.com',
+          role_id: 2,
+          first_name: 'Test',
+          last_name: 'User2',
+          major_id: 1,
+          graduation_year: 2023,
+          phone: '8328675309',
+          is_approved: true
+        }
       end
 
       it 'updates the requested user' do
         user = User.find_or_create_by!(valid_attributes)
         patch user_url(user), params: { user: new_attributes }
         user.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('User2'))
       end
 
       it 'redirects to the user' do

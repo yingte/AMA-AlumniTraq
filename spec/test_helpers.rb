@@ -7,7 +7,6 @@
 def get_admin_user
   User.find_or_create_by!(
     email: 'admin@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 1, 
     first_name: 'Test',
     last_name: 'Admin',
@@ -21,7 +20,6 @@ end
 def get_event_planner_user
   User.find_or_create_by!(
     email: 'event.planner@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 4, 
     first_name: 'Test',
     last_name: 'Event Planner',
@@ -35,7 +33,6 @@ end
 def get_member_user
   User.find_or_create_by!(
     email: 'member@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 2,
     first_name: 'Test',
     last_name: 'User',
@@ -49,7 +46,6 @@ end
 def get_alumnus_user
   User.find_or_create_by!(
     email: 'alumnus@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 3,
     first_name: 'Test',
     last_name: 'Alumnus',
