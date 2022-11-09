@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+# gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'seed_dump'
 
 # Use Active Storage variant
@@ -67,8 +67,8 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'simplecov', require: false
   gem 'webdrivers'
-  gem 'simplecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

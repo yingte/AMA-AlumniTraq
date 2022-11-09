@@ -29,7 +29,17 @@ Download this code repository by using git:
 
 An RSpec test suite is available and can be ran using:
 
-  `rspec spec/`
+  `rails db:migrate RAILS_ENV=test`
+  `rails db:seed RAILS_ENV=test`
+  `rails spec .`
+
+Brakeman security can be ran using:
+
+  `brakeman`
+
+Rubocop lint can be ran using:
+
+  `bundle exec rubocop --parallel -A`
 
 ## Execute Code ##
 
@@ -55,7 +65,7 @@ The application can be seen using a browser and navigating to <http://localhost:
 
 ## Environmental Variables/Files ##
 
-No environmental variables or files were used
+A master key for decrypting the credentials is stored locally and on Heroku
 
 ## Deployment ##
 
@@ -69,7 +79,7 @@ Deploy the code
 
 ## CI/CD ##
 
-TBD
+Connected to push/pull requests to the main branch and the central "test" branch. Runs RSpec, Rubocop, and Brakeman tests.
 
 ## Support ##
 

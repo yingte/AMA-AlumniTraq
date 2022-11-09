@@ -101,12 +101,11 @@ ActiveRecord::Schema.define(version: 2022_10_17_203008) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "password_digest"
-    t.bigint "role_id", null: false
+    t.bigint "role_id", default: 2
     t.string "first_name"
     t.string "last_name"
     t.bigint "major_id"
-    t.integer "graduation_year"
+    t.integer "graduation_year", default: 1876
     t.string "phone"
     t.boolean "is_approved", default: false
     t.datetime "created_at", precision: 6, null: false

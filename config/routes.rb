@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :meetings
   resources :media_handles
   resources :alumni
-  resources :users
   resources :roles
+  resources :users
 
   # Directory routes
   resources :basic_searches, only: %i[index show] do
