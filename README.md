@@ -31,7 +31,15 @@ An RSpec test suite is available and can be ran using:
 
   `rails db:migrate RAILS_ENV=test`
   `rails db:seed RAILS_ENV=test`
-  `rspec spec .`
+  `rails spec .`
+
+Brakeman security can be ran using:
+
+  `brakeman`
+
+Rubocop lint can be ran using:
+
+  `bundle exec rubocop --parallel -A`
 
 ## Execute Code ##
 
@@ -71,7 +79,7 @@ Deploy the code
 
 ## CI/CD ##
 
-TBD
+Connected to push/pull requests to the main branch and the central "test" branch. Runs RSpec, Rubocop, and Brakeman tests.
 
 ## Support ##
 

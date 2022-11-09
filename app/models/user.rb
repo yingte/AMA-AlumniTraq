@@ -51,9 +51,9 @@ class User < ApplicationRecord
     # Create new user if they don't exist
     unless user
       user = User.create!(first_name: data['first_name'],
-                            last_name: data['last_name'],
-                            email: data['email']
-                          )
+                          last_name: data['last_name'],
+                          email: data['email']
+                         )
       is_signup = true
     end
 

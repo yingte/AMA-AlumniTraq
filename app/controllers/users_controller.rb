@@ -49,23 +49,23 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if session[:is_signup]
-        handle_signup format
+        handle_signup(format)
       else
         # First check if switching roles
         role_change = check_role_change
 
         if @user.update(user_params)
           if role_change[:to_alumnus]
-            handle_create_alumnus format
+            handle_create_alumnus(format)
+          elsif role_change[:from_alumnus]
+            # No longer alumnus, need to remove extra info
+            alumnus_info = Alumnus.find_by(user: @user)
+            alumnus_info&.destroy!
+            format.html { redirect_to(user_url(@user), notice: 'Profile was successfully updated and alumnus info destroyed.') }
+            format.json { render(:show, status: :ok, location: @user) }
           else
-            notice_message = "Profile was successfully updated."
-            if role_change[:from_alumnus]
-              alumnus_info = Alumnus.find_by(user: @user)
-              alumnus_info.destroy! if alumnus_info
-              notice_message = "Profile was successfully updated and alumnus info destroyed."
-            end
-
-            format.html { redirect_to(user_url(@user), notice: notice_message) }
+            # Normal update
+            format.html { redirect_to(user_url(@user), notice: 'Profile was successfully updated.') }
             format.json { render(:show, status: :ok, location: @user) }
           end
         else
@@ -145,7 +145,7 @@ class UsersController < ApplicationController
   end
 
   def check_role_change
-    params_role_id = Integer((user_params)[:role_id])
+    params_role_id = Integer(user_params[:role_id])
     user_role_id = @user.role.id
     to_alumnus = false
     from_alumnus = false
@@ -159,5 +159,4 @@ class UsersController < ApplicationController
 
     { to_alumnus: to_alumnus, from_alumnus: from_alumnus }
   end
-
 end
