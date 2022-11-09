@@ -6,6 +6,18 @@ class MeetingsController < ApplicationController
 
   # GET /meetings or /meetings.json
   def index
+    # Check if valid date
+    if params[:start_date]
+      begin
+        Date.parse(params[:start_date])
+      rescue ArgumentError
+        respond_to do |format|
+          format.html { redirect_to(meetings_url, notice: 'Invalid date.') }
+          format.json { head(:no_content) }
+        end
+      end
+    end
+
     @meetings = Meeting.all
   end
 
