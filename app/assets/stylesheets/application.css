@@ -82,3 +82,10 @@ nav li form input:hover {
     display: block !important;
     padding: 0.75em 1em !important;
 }
+
+.text-style{
+    color: #800000;
+    font-family: adobe-garamond-pro;
+    font-weight: 400;
+    font-style: normal;
+}

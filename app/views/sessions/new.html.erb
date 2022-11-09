@@ -4,41 +4,50 @@
     </div>
 </div>
 
-<main id="login-main">
-    <div id="login-container" style="z-index: 1;">
-        <%= form_with url: login_path do |form| %>
-            <h1>Login</h1>
+<!-- Section: Design Block -->
+<section class="text-center">
+
+  <div class="card shadow-5-strong sign-in-pad" style="
+        
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
 
             <% if flash.alert %>
-                <div>
-                    <%= flash.alert %>
-                </div>
+              <div>
+                  <%= flash.alert %>
+              </div>
             <% end %>
 
-            <div>
-                <%= form.label :email %>
-                <% if @email %>
-                    <%= form.text_field :email, value: @email %>
-                <% else %>
-                    <%= form.text_field :email %>
-                <% end %>
-            </div>
+            <img src="https://images.squarespace-cdn.com/content/v1/568841be5a56682e0b8162f2/1510940137363-1T0H93GH67WNQO652JN2/amalogo.png?format=1500w" alt="Logo" style="width: 410px;">
 
-            <div>
-                <%= form.label :password %>
-                <%= form.password_field :password %>
-            </div>
 
-            <p>Don't have an account? <span id="signup-btn"><%= link_to "Sign Up", new_user_path %></span> </p>
+          <!-- Register buttons -->
+          <div class="text-center"  style="margin-bottom: 1rem">
+            <p>Sign Up Using:</p>
 
-            <div>
-                <%= form.submit "Sign In" %>
-            </div>
-        <% end %>
+            <%= button_to user_facebook_omniauth_authorize_path, class: "btn btn-link btn-floating mx-1" do %>
+              <i class="fab fa-facebook-f"></i>
+            <% end %>
 
-        <%= button_to "Continue with Google", user_google_oauth2_omniauth_authorize_path, class: 'oauth-button' %>
-        <%= button_to "Continue with Facebook", user_facebook_omniauth_authorize_path, class: 'oauth-button' %>
-        <%= button_to "Continue with LinkedIn", user_linkedin_omniauth_authorize_path, class: 'oauth-button' %>
+            <%= button_to user_google_oauth2_omniauth_authorize_path, class: "btn btn-link btn-floating mx-1" do %>
+              <i class="fab fa-google"></i>
+            <% end %>
+
+            <%= button_to user_linkedin_omniauth_authorize_path, class: "btn btn-link btn-floating mx-1" do %>
+              <i class="fab fa-linkedin-in"></i>
+            <% end %>
+
+          </div>          
+        </div>
+      </div>
     </div>
-</main>
+  </div>
+</section>
+<!-- Section: Design Block -->
+
 
