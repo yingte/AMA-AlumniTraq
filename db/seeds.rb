@@ -168,7 +168,7 @@ User.create!(
     is_approved: true
   }         )
 
-if Rails.env.test?
+if Rails.env.test? || ENV['use_test_seed']
   puts("Creating users...")
   User.create!([
     {
