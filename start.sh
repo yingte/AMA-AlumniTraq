@@ -13,11 +13,17 @@ bundle install
 echo "Creating database..."
 rails db:create
 
-echo "Migrating..."
+echo "Migrating development database..."
 rails db:migrate
 
-echo "Populating database with seed..."
+echo "Migrating test database..."
+rails db:migrate RAILS_ENV=test
+
+echo "Populating development database with seed..."
 rails db:seed
+
+echo "Populating test database with seed..."
+rails db:seed RAILS_ENV=test
 
 echo "Launching server..."
 echo "rails server --binding=0.0.0.0"

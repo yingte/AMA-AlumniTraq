@@ -11,7 +11,6 @@ RSpec.describe('alumni/index', type: :view) do
 
   alumnus_user1 = User.find_or_create_by!(
     email: 'alumnus1@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 3,
     first_name: 'Test',
     last_name: 'Alumnus1',
@@ -22,7 +21,6 @@ RSpec.describe('alumni/index', type: :view) do
   )
   alumnus_user2 = User.find_or_create_by!(
     email: 'alumnus2@test.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 3,
     first_name: 'Test',
     last_name: 'Alumnus2',

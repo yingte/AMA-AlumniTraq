@@ -107,14 +107,22 @@ RSpec.describe('/alumni', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          user_id: alumnus_user.id,
+          bio: 'Valid bio2',
+          job_title: 'Valid Job Title',
+          job_category_id: 1,
+          employer: 'Valid Employer',
+          availability: 'Valid availability'
+        }
       end
 
       it 'updates the requested alumnus' do
         alumnus = Alumnus.find_or_create_by!(valid_attributes)
         patch alumnus_url(alumnus), params: { alumnus: new_attributes }
         alumnus.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('Valid bio2'))
       end
 
       it 'redirects to the alumnus' do

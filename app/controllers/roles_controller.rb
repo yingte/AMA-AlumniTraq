@@ -50,11 +50,18 @@ class RolesController < ApplicationController
 
   # DELETE /roles/1 or /roles/1.json
   def destroy
-    @role.destroy!
+    if @role.id > 4
+      @role.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to(roles_url, notice: 'Role was successfully destroyed.') }
-      format.json { head(:no_content) }
+      respond_to do |format|
+        format.html { redirect_to(roles_url, notice: 'Role was successfully destroyed.') }
+        format.json { head(:no_content) }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to(roles_url, notice: 'Role cannot be destroyed.') }
+        format.json { head(:no_content) }
+      end
     end
   end
 

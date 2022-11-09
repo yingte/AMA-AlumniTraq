@@ -20,13 +20,17 @@ module Users
 
     def handle_auth(provider)
       # Implemented in app/models/user.rb
-      @user = User.from_omniauth(request.env['omniauth.auth'])
+      response = User.from_omniauth(request.env['omniauth.auth'])
+      @user = response[:user]
+      session[:is_signup] = response[:is_signup]
 
-      if @user.persisted?
+      if session[:is_signup]
+        @user.graduation_year = nil
+        @user.role = nil
+        render(new_user_path)
+      else
         session[:user_id] = @user.id
         redirect_to(root_path, notice: "Logged in with #{provider}")
-      else
-        render(new_user_path)
       end
     end
   end

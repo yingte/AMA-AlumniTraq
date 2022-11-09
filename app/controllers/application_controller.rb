@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
         # Redirect to login page
         redirect_to(login_path)
       end
-    else
+    elsif !session[:is_signup]
       redirect_to(login_path)
     end
   end

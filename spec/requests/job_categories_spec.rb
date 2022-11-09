@@ -94,14 +94,17 @@ RSpec.describe('/job_categories', type: :request) do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          name: 'Valid name2'
+        }
       end
 
       it 'updates the requested job_category' do
         job_category = JobCategory.find_or_create_by!(valid_attributes)
         patch job_category_url(job_category), params: { job_category: new_attributes }
         job_category.reload
-        skip('Add assertions for updated state')
+        follow_redirect!
+        expect(response.body).to(include('Valid name2'))
       end
 
       it 'redirects to the job_category' do

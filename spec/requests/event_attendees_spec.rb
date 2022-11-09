@@ -95,36 +95,6 @@ RSpec.describe('/event_attendees', type: :request) do
     end
   end
 
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested event_attendee' do
-        event_attendee = EventAttendee.find_or_create_by!(valid_attributes)
-        patch event_attendee_url(event_attendee), params: { event_attendee: new_attributes }
-        event_attendee.reload
-        skip('Add assertions for updated state')
-      end
-
-      it 'redirects to the event_attendee' do
-        event_attendee = EventAttendee.find_or_create_by!(valid_attributes)
-        patch event_attendee_url(event_attendee), params: { event_attendee: new_attributes }
-        event_attendee.reload
-        expect(response).to(redirect_to(event_attendee_url(event_attendee)))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        event_attendee = EventAttendee.find_or_create_by!(valid_attributes)
-        patch event_attendee_url(event_attendee), params: invalid_attributes
-        expect(response.body).to(include('Editing Event Attendee'))
-      end
-    end
-  end
-
   describe 'DELETE /destroy' do
     it 'destroys the requested event_attendee' do
       event_attendee = EventAttendee.find_or_create_by!(valid_attributes)

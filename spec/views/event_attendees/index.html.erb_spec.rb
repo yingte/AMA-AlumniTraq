@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe('event_attendees/index', type: :view) do
   alumnus_user1 = User.find_or_create_by!(
     email: 'thegoodag@gmail.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 3,
     first_name: 'Ole',
     last_name: 'Rock',
@@ -16,7 +15,6 @@ RSpec.describe('event_attendees/index', type: :view) do
   )
   alumnus_user2 = User.find_or_create_by!(
     email: 'byron.henderson@gmail.com',
-    password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
     role_id: 3,
     first_name: 'Byron',
     last_name: 'Henderson',

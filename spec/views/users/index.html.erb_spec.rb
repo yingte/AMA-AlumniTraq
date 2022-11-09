@@ -11,7 +11,6 @@ RSpec.describe('users/index', type: :view) do
     assign(:users, [
       User.find_or_create_by!(
         email: 'member1@test.com',
-        password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
         role_id: 2,
         first_name: 'Test',
         last_name: 'User',
@@ -22,7 +21,6 @@ RSpec.describe('users/index', type: :view) do
       ),
       User.find_or_create_by!(
         email: 'member2@test.com',
-        password_digest: '$2a$12$bHVvOOz25bjanV1WWayG6uhDd/qc61qMxtha6gV6h17MfiOmOxQGy',
         role_id: 2,
         first_name: 'Test',
         last_name: 'User',
