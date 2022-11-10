@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1 or /users/1.json
-  def show; end
+  def show
+    Current.previous_path = "/settings"
+  end
 
   # GET /users/new
   def new
@@ -19,12 +21,17 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit; end
+  def edit 
+    if session[:user_id] != @user.id
+      Current.previous_path = "/users/" + String(@user.id)
+    else
+      Current.previous_path = "/admin"
+    end
+  end
 
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         # Login the new user if not an admin
