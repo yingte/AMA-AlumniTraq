@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2022_11_07_033257) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "language"
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["major_id"], name: "index_users_on_major_id"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
