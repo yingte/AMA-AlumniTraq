@@ -1,0 +1,31 @@
+<div class="video-background">
+    <div class="video-foreground">
+        <iframe src="//player.vimeo.com/video/194104442?api=1&amp;background=1" frameborder="0" allowfullscreen class="background-video ready"></iframe>
+    </div>
+</div>
+
+<!-- Section: Design Block -->
+<section class="text-left">
+
+    <div class="card shadow-5-strong sign-up-pad" style="
+        
+        background: #510400;
+        backdrop-filter: blur(30px);
+        opacity: .96;
+        ">
+
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="fix-width">
+
+                <%= render 'form', user: @user %>
+
+                <%= link_to 'Back', Current.previous_path %>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Section: Design Block -->
