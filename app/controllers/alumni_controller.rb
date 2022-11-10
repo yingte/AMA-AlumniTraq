@@ -12,7 +12,7 @@ class AlumniController < ApplicationController
 
   # GET /alumni/1 or /alumni/1.json
   def show
-    Current.previous_path = "/settings"
+    Current.previous_path = "/users/" + String(@alumnus.user.id)
   end
 
   # GET /alumni/new

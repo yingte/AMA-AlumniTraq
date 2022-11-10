@@ -11,9 +11,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1 or /users/1.json
-  def show
-    Current.previous_path = "/settings"
-  end
+  def show; end
 
   # GET /users/new
   def new
@@ -22,7 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit 
-    if session[:user_id] != @user.id
+    if session[:user_id] == @user.id
       Current.previous_path = "/users/" + String(@user.id)
     else
       Current.previous_path = "/admin"
