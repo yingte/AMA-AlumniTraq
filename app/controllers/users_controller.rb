@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit 
-    if session[:user_id] == @user.id
+    if session[:user_id] != @user.id
       Current.previous_path = "/users/" + String(@user.id)
     else
       Current.previous_path = "/admin"
