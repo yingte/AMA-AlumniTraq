@@ -139,7 +139,7 @@ class UsersController < ApplicationController
         format.json { render(:index, status: :created, location: @user) }
       end
     else
-      format.html { render(:edit, status: :unprocessable_entity) }
+      format.html { render('users/signup', status: :unprocessable_entity) }
       format.json { render(json: @user.errors, status: :unprocessable_entity) }
     end
   end
