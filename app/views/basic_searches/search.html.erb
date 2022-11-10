@@ -1,18 +1,18 @@
-<h1>Directory</h1>
-<h3>Found <%= @results.size %> matches</h3>
+<h1><%= t("directory") %></h1>
+<h3><%= t(".found") %> <%= @results.size %> <%= t(".matches") %> </h3>
 
 <%= render 'form' %>
 
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Major</th>
-      <th>Graduation year</th>
-      <th>Job Category</th>
-      <th>Job Title</th>
-      <th>Employer</th>
+      <th><%= t(".first_name") %></th>
+      <th><%= t(".last_name") %></th>
+      <th><%= t(".major") %></th>
+      <th><%= t(".graduation_year") %></th>
+      <th><%= t(".job_category") %></th>
+      <th><%= t(".job_title") %></th>
+      <th><%= t(".employer") %></th>
       <th></th>
     </tr>
   </thead>
