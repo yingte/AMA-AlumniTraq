@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   # Admin page route
   resources :admin, only: [:index]
   post '/admin/approve' => 'admin#approve', as: :approve
+  get '/admin/documentation' => 'admin#documentation', as: :documentation
 
   # FAQ route
   resources :faq, only: [:index]
