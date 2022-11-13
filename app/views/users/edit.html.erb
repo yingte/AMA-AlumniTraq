@@ -1,7 +1,7 @@
 <% if session[:user_id] == @user.id%>
-    <h1>Editing Profile</h1>
+    <h1>Edit Profile</h1>
 <% else %>
-    <h1>Editing User</h1>
+    <h1>Edit User</h1>
 <% end %>
 
 <%= render 'form', user: @user %>

@@ -11,43 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, readonly: true %>
+          
+
+  <div class="mb-3">
+    <%= form.label :email, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :email, readonly: true, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :role_name %>
-    <!-- Changed role_id to role_name -->
+  <div class="mb-3">
+    <%= form.label :role_name, class: "col-sm-2 col-form-label" %>
     <%= form.select :role_id, Role.unprivileged.order(:name).map { |role| [role.name, role.id] }, include_blank: false, id: "id_of_the_role_id_select_box" %>
   </div>
 
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name%>
-  </div>
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+  <div class="row gx-3 mb-3">
+    <!-- Form Group (first name)-->
+    <div class="col-md-6">
+      <%= form.label :first_name, class: "small mb-1 col-form-label" %>
+      <%= form.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+    </div>
+    <!-- Form Group (last name)-->
+    <div class="col-md-6">
+      <%= form.label :first_name, class: "small mb-1 col-form-label" %>
+      <%= form.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :major_name %>
-    <!-- Changed major_id to major_name -->
+  <div class="mb-3">
+    <%= form.label :major_name, class: "col-sm-2 col-form-label" %>
     <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
   </div>
 
-  <div class="field">
-    <%= form.label :graduation_year %>
-    <%= form.number_field :graduation_year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="row gx-3 mb-3">
+    <!-- Form Group (first name)-->
+    <div class="col-md-6">
+      <%= form.label :graduation_year, class: "small mb-1 col-form-label" %>
+      <%= form.text_field :graduation_year, placeholder: "Graduation Year", class: "form-control" %>
+    </div>
+    <!-- Form Group (last name)-->
+    <div class="col-md-6">
+      <%= form.label :phone, class: "small mb-1 col-form-label" %>
+      <%= form.text_field :phone, placeholder: "Phone Number", class: "form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Account", class: "button-89 btn-top-margin" %>
   </div>
+
+  
 <% end %>

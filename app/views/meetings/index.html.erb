@@ -1,9 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Meetings</h1>
+<p class= "day-font" style="color: green"><%= notice %></p>
 
 <%= month_calendar(events: @meetings) do |date, meetings| %>
-  <%= date %>
+  <%= date.day %>
 
   <% meetings.each do |meeting| %>
     <div>
@@ -13,5 +11,5 @@
 <% end %>
 
 <% if Current.user.is_admin? || Current.user.is_event_planner? %>
-  <%= link_to "Create a New meeting", new_meeting_path %>
+  <%= link_to "Create a New meeting", new_meeting_path, class: "button-89 btn-top-margin no-underline" %>
 <% end %>
