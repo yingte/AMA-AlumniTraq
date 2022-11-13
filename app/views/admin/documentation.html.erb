@@ -1,0 +1,236 @@
+<h1>Documentation</h1>
+
+<h2>Jump to...</h2>
+<ul>
+    <li><a href="#admin-capabilities">What Can I Do as an Admin?</a></li>
+    <li><a href="#admin-duties">What Are the Duties of an Admin?</a></li>
+    <li><a href="#admin-reset">How to Reset the App</a></li>
+    <li><a href="#admin-oauth">Oauth Configurations</a></li>
+    <li><a href="#admin-changes">Can I Change Something on the App?</a></li>
+    <li><a href="#admin-recover">Can't Recover from Fatal Error. What Can I Do?</a></li>
+</ul>
+
+<hr>
+<article id="admin-capabilities">
+    <h3>What Can I Do as an Admin?</h3>
+    <br>
+    <h4>Superuser</h4>
+    <p>
+        As the admin, you have no restrictions on the app. You can do almost 
+        anything your heart desires. The only things you can't do as an admin 
+        is demote yourself from admin or delete the four critical roles needed 
+        by the app. You can't demote yourself to avoid accidentally leaving 
+        the app without an admin. As for the roles, without the core admin, 
+        member, alumnus, and event planner roles, the app simply won't work. 
+        Thus, you don't have the power to remove them and destroy the app. 
+        Everything else is fair game though. You are a superuser. You can 
+        create, read, update, and delete anything. But with great power 
+        comes great responsiblity. Make sure your admins are trustworthy.
+    </p>
+
+    <h4>What You Can Do that Others Can't</h4>
+    <p>
+        </p><ul>
+            <li>View admin page</li>
+            <li>View database tables in the app</li>
+            <li>Approve new users</li>
+            <li>Create, view, update, and delete users other than yourself</li>
+            <li>Add and assign the roles of users</li>
+            <li>
+                Create, view, update, and delete alumni (users can still view 
+                alumni in the directory and alumni can edit their profiles)
+            </li>
+            <li>
+                Create, view, update, and delete events on the calendar 
+                (event planners can do this too)
+            </li>
+        </ul>
+    <p></p>
+</article>
+
+<hr>
+<article id="admin-duties">
+    <h3>What Are the Duties of an Admin?</h3>
+    <br>
+    <h4>Approve New Users</h4>
+    <p>
+        This will be one of your primary duties as an admin. Whenever someone 
+        logs in to the app for the first time, an account will be created for 
+        them. They will be able to use the app immediately but will marked as 
+        not yet approved. There information will pop up on the admin page prompting 
+        you to approve or remove the new user. You can also edit their information 
+        before approving too. If you choose to remove them, their account will 
+        be removed, but they can still sign up again if they want.
+    </p>
+
+    <h4>Manage Roles</h4>
+    <p>
+        A secondary task admins have is to elevate users from an unprivileged 
+        member to event planner or another admin. It is advised you adhere to the 
+        principle of least privilege. Don't just elevate people on all over the 
+        place; that would be a security risk. Whenever someone isn't organizing 
+        events for the organization, demote them back to normal member. When 
+        an admin or event planner graduates, they will become an alumnus and 
+        lose their privilege as a result. However, if an admin or event planner 
+        steps down from their position or leaves the organization for whatever 
+        reason, either demote them to member or delete their account.
+    </p>
+
+    <h4>Manage Majors and Job Categories</h4>
+    <p>
+        You shouldn't have to do this, but you can update the list of majors and 
+        job categories if you need to. Say a new major is offered at Texas A&amp;M, 
+        then you could go to the Majors table from the admin page and then 
+        create a new major. The same goes for job categories. The majors table 
+        is preloaded with all of the majors currently offered by Texas A&amp;M. The 
+        job categories are preloaded from the ones LinkedIn uses.
+    </p>
+
+    <h4>Keep the App Afloat</h4>
+    <p>
+        As a catch all, your job is to make sure the app doesn't crash and burn. 
+        Overall, this app doesn't require much upkeep and will essentially run 
+        on its own. Still, just make sure it doesn't die.
+    </p>
+</article>
+
+<hr>
+<article id="admin-reset">
+    <h3>How to Reset the App</h3>
+    <br>
+    <ol>
+        <li>Login to Heroku and navigate to the app dashboard.</li>
+        <li>Click on the "More" dropdown tab.</li>
+        <li>Click on "Restart all dynos".</li>
+        <li>Click on the "More" dropdown tab again.</li>
+        <li>Click on "View logs" to make sure the app launches successfully.</li>
+    </ol>
+</article>
+
+<hr>
+<article id="admin-oauth">
+    <h3>Oauth Configurations</h3>
+    <br>
+    <h4>How does it work?</h4>
+    <p>
+        At a very high level, the app uses a pair of API key and secret for each 
+        Oauth provider to check if the user on the device happens to be logged in 
+        to the provider. If they are, then the provider sends the app the user's 
+        email, first name, and last name. The app then logs in the user if if finds 
+        a matching email in the database. If not, then the app creates a new user 
+        with that email and then logs them in.
+    </p>
+
+    <h4>How do I access Facebook, Google, or LinkedIn Developer?</h4>
+    <p>
+        The app is registered for each Oauth provider under alumnitraq.aggiemensalliance@gmail.com.
+        If you wish to manage anything on the Oauth like the consent screen, 
+        the privacy policy, get new API key(s) and secret(s), etc., then you 
+        would log in to the provider, navigate to the developer page, and then 
+        view the app by clicking on "My Apps" wherever that button may be. Here 
+        are the links to their sites:
+        <ul>
+            <li><a href="https://developers.facebook.com/">Facebook Developers</a></li>
+            <li><a href="https://developers.google.com/">Google Developers</a></li>
+            <li><a href="https://developer.linkedin.com/">LinkedIn Developer</a></li>
+        </ul>
+    </p>
+
+    <h4>How do I update new Oauth API key(s) and secret(s)?</h4>
+    <p>
+        This is recommended to be avoided if possible as the keys and secrets are 
+        stored in an encrypted credentials.yml.enc file, which adds substantial 
+        complexity to getting new keys/secrets. Nevertheless, here are the steps:
+        <ol>
+            <li>Login to Heroku and navigate to the "Deploy" tab.</li>
+            <li>Make sure you have a GitHub repo connected to the app.</li>
+            <li>
+                If you don't have a repo connected, then fork the 
+                <a href="https://github.com/lgloera2023/AMA-AlumniTraq">original</a>.
+            </li>
+            <li>Follow the README instructions to download the Docker image and start the app locally.</li>
+            <li>Once the container is running, execute "EDITOR=vim rails credentials:edit".</li>
+            <li>
+                If you don't know how to use VIM, watch the first 3 minutes of this 
+                <a href="https://www.youtube.com/watch?v=ggSyF1SVFr4&t=42s">tutorial</a> 
+                to get the basics.
+            </li>
+            <li>Transfer over the corresponding new API key(s) and secret(s).</li>
+            <li>Save and exit</li>
+            <li>Run the typical "git add *", "git commit -m '...'", and "git push origin main".</li>
+            <li>Go back to Heroku and navigate to the "Deploy" tab.</li>
+            <li>
+                Make sure the build/deployment succeeds. If you have automatic deployments
+                setup with your branch, then all you have to do is watch. If not, then you will 
+                have to scroll down to the bottom of the page and manually deploy the branch.
+            </li>
+            <li>Now the keys and secrets are updated and everything is swell.</li>
+        </ol>
+    </p>
+</article>
+
+<hr>
+<article id="admin-changes">
+    <h3>Can I Change Something on the App?</h3>
+    <br>
+    <h4>Why do I have to use OAuth?</h4>
+    <p>
+        This increases the security of your passwords since the AlumniTraq
+        app does not handle the login at all. You can feel more confident in
+        Google, Facebook, or LinkedIn's ability to keep your password safe
+        rather than a small app built by students.
+    </p>
+
+    <h4>Do I have to use Google, Facebook, or LinkedIn?</h4>
+    <p>
+        Yes, you have to use one of those three options. On the bright side,
+        you can use any of those options to log you in. Even if you register
+        with Google, you can still sign in with Facebook so long as the
+        emails are the same.
+    </p>
+
+    <h4>Will logging me out of the application log me out of Google, Facebook, or LinkedIn?</h4>
+    <p>
+        No. Logging out of the app will only log you out of AlumniTraq.
+    </p>
+
+    <h4>How long can I stay logged in?</h4>
+    <p>
+        Normal users and alumni can stay logged in indefinetly since no sensative information
+        is stored with their accounts. Only users with additional privilegs have a timeout
+        on their login status.
+    </p>
+</article>
+
+<hr>
+<article id="admin-recover">
+    <h3>Can't Recover from Fatal Error. What Can I Do?</h3>
+    <br>
+    <h4>Why do I have to use OAuth?</h4>
+    <p>
+        This increases the security of your passwords since the AlumniTraq
+        app does not handle the login at all. You can feel more confident in
+        Google, Facebook, or LinkedIn's ability to keep your password safe
+        rather than a small app built by students.
+    </p>
+
+    <h4>Do I have to use Google, Facebook, or LinkedIn?</h4>
+    <p>
+        Yes, you have to use one of those three options. On the bright side,
+        you can use any of those options to log you in. Even if you register
+        with Google, you can still sign in with Facebook so long as the
+        emails are the same.
+    </p>
+
+    <h4>Will logging me out of the application log me out of Google, Facebook, or LinkedIn?</h4>
+    <p>
+        No. Logging out of the app will only log you out of AlumniTraq.
+    </p>
+
+    <h4>How long can I stay logged in?</h4>
+    <p>
+        Normal users and alumni can stay logged in indefinetly since no sensative information
+        is stored with their accounts. Only users with additional privilegs have a timeout
+        on their login status.
+    </p>
+</article>
