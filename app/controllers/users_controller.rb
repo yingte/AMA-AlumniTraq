@@ -19,12 +19,12 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit 
-    if session[:user_id] == @user.id
-      Current.previous_path = "/users/" + String(@user.id)
-    else
-      Current.previous_path = "/admin"
-    end
+  def edit
+    Current.previous_path = if session[:user_id] == @user.id
+                              "/users/#{String(@user.id)}"
+                            else
+                              '/admin'
+                            end
   end
 
   # POST /users or /users.json

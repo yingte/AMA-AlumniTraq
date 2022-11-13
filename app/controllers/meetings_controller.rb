@@ -25,7 +25,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1 or /meetings/1.json
   def show
     @event_attendee = EventAttendee.find_by(user: Current.user, meeting: @meeting)
-    Current.previous_path = "/meetings"
+    Current.previous_path = '/meetings'
   end
 
   # GET /meetings/new
@@ -34,8 +34,8 @@ class MeetingsController < ApplicationController
   end
 
   # GET /meetings/1/edit
-  def edit 
-    Current.previous_path = "/meetings/"+ String(@meeting.id)
+  def edit
+    Current.previous_path = "/meetings/#{String(@meeting.id)}"
   end
 
   # POST /meetings or /meetings.json

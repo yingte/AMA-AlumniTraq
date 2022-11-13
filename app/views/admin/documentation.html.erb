@@ -86,6 +86,23 @@
         job categories are preloaded from the ones LinkedIn uses.
     </p>
 
+    <h4>Periodically Create a Database Backup</h4>
+    <p>
+        Heroku provides the resource of creating manual backups of the database 
+        that you can use to restore the database should that be necessary. The 
+        documentation can be found 
+        <a href="https://devcenter.heroku.com/articles/heroku-postgres-backups">here</a>.
+        To create a backup, follow the steps:
+        <ol>
+            <li>Login to Heroku and navigate to the app dashboard</li>
+            <li>Click on the "Resources" tab</li>
+            <li>Click on the "Heroku Postgres" link at the bottom.</li>
+            <li>Click on the "Durability" tab.</li>
+            <li>Click on the "Create Manual Backup" button.</li>
+            <li>You can delete old backups here too.</li>
+        </ol>
+    </p>
+
     <h4>Keep the App Afloat</h4>
     <p>
         As a catch all, your job is to make sure the app doesn't crash and burn. 
@@ -173,32 +190,11 @@
 <article id="admin-changes">
     <h3>Can I Change Something on the App?</h3>
     <br>
-    <h4>Why do I have to use OAuth?</h4>
+    <h4>If You Connect the App to a GitHub Repo, Yes</h4>
     <p>
-        This increases the security of your passwords since the AlumniTraq
-        app does not handle the login at all. You can feel more confident in
-        Google, Facebook, or LinkedIn's ability to keep your password safe
-        rather than a small app built by students.
-    </p>
-
-    <h4>Do I have to use Google, Facebook, or LinkedIn?</h4>
-    <p>
-        Yes, you have to use one of those three options. On the bright side,
-        you can use any of those options to log you in. Even if you register
-        with Google, you can still sign in with Facebook so long as the
-        emails are the same.
-    </p>
-
-    <h4>Will logging me out of the application log me out of Google, Facebook, or LinkedIn?</h4>
-    <p>
-        No. Logging out of the app will only log you out of AlumniTraq.
-    </p>
-
-    <h4>How long can I stay logged in?</h4>
-    <p>
-        Normal users and alumni can stay logged in indefinetly since no sensative information
-        is stored with their accounts. Only users with additional privilegs have a timeout
-        on their login status.
+        In order to make any changes to the app on your own, then you would 
+        need to change the code locally on your machine, push the changes 
+        to a GitHub repository, and then deploy the changes on the app. 
     </p>
 </article>
 
@@ -206,31 +202,60 @@
 <article id="admin-recover">
     <h3>Can't Recover from Fatal Error. What Can I Do?</h3>
     <br>
-    <h4>Why do I have to use OAuth?</h4>
+    <h4>Read the Logs</h4>
     <p>
-        This increases the security of your passwords since the AlumniTraq
-        app does not handle the login at all. You can feel more confident in
-        Google, Facebook, or LinkedIn's ability to keep your password safe
-        rather than a small app built by students.
+        Look at the logs to get an idea of what went wrong. You can see the 
+        logs by logging in to Heroku, clicking on the "More" dropdown, and 
+        then click "View logs".
     </p>
 
-    <h4>Do I have to use Google, Facebook, or LinkedIn?</h4>
+    <h4>Restart the App</h4>
     <p>
-        Yes, you have to use one of those three options. On the bright side,
-        you can use any of those options to log you in. Even if you register
-        with Google, you can still sign in with Facebook so long as the
-        emails are the same.
+        This is the equivalent to turning something off and then back on again. 
+        See the section on <a href="#admin-reset">How to Reset the App</a>.
     </p>
 
-    <h4>Will logging me out of the application log me out of Google, Facebook, or LinkedIn?</h4>
+    <h4>Check the Database</h4>
     <p>
-        No. Logging out of the app will only log you out of AlumniTraq.
+        If you keep getting an error and can't view a page with information from 
+        the database, then something could be inconsistent with the database.
+        <ol>
+            <li>Login to Heroku and navigate to the "Resources" tab.</li>
+            <li>Click on the "Heroku Postgres" link at the bottom.</li>
+            <li>Check the health of the database in the "Overview" pane.</li>
+        </ol>
+        If everything is good there, then you can open a PSQL console to the database 
+        using <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI</a>. 
+        <ul>
+            <li>Execute `heroku login` in the terminal and follow the instructions to login</li>
+            <li>
+                Connect to the database by executing: 
+                `heroku pg:psql -a "alumnitraq`
+            </li>
+            <li>List out all the tables by executing `\d`</li>
+            <li>Check if any foreign keys are violated for some reason</li>
+            <li>
+                You have pretty much absolute/unchecked privilege here, 
+                so be careful not to delete everything or something.
+            </li>
+        </ul>
+        Worst case scenario, you just reset the database and then restore 
+        from the seed or a database backup.
+        <ol>
+            <li>From the database "Overview" pane, click on the "Settings" tab.</li>
+            <li>Click on "Reset Database..."</li>
+            <li>Confirm you want to reset the database by entering the name of the app</li>
+            <li>In a terminal on your computer, run `heroku pg:backups:restore -a alumnitraq`</li>
+            <li>Confirm the database has been restored to the most recent backup</li>
+            <li>If you don't have a backup, the run `heroku run rails db:seed -a alumnitraq` in the terminal</li>
+        </ol>
     </p>
 
-    <h4>How long can I stay logged in?</h4>
+    <h4>Troubleshooting</h4>
     <p>
-        Normal users and alumni can stay logged in indefinetly since no sensative information
-        is stored with their accounts. Only users with additional privilegs have a timeout
-        on their login status.
+        If the steps above don't check out, then try to Google what you 
+        can see and read some 
+        <a href="https://devcenter.heroku.com/categories/reference">documentation</a> 
+        to get a better idea. Good luck.
     </p>
 </article>
