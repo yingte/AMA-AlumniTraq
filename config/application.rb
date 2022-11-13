@@ -11,6 +11,8 @@ Bundler.require(*Rails.groups)
 module AlumniTraq
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    #Rails.logger = Logger.new(STDOUT)
+    #config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
     config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.

@@ -27,7 +27,8 @@ Rails.application.routes.draw do
       get :search
     end
   end
-
+  # Profile Settings route
+  resources :settings, only: [:index]
   # Sessions routes
   get 'login', to: 'sessions#new'
   resources :sessions, only: [:new] # Add this for LinkedIn omniauth
