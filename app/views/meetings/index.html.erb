@@ -5,11 +5,11 @@
 
   <% meetings.each do |meeting| %>
     <div>
-      <%= link_to meeting.name, meeting %>
+      <%= link_to meeting.name, meeting, class: "button-24 btn-top-margin no-underline" %>
     </div>
   <% end %>
 <% end %>
 
 <% if Current.user.is_admin? || Current.user.is_event_planner? %>
-  <%= link_to "Create a New meeting", new_meeting_path, class: "button-89 btn-top-margin no-underline" %>
+  <%= link_to "Create a New meeting", new_meeting_path, class: "button-89 add-event-button" %>
 <% end %>

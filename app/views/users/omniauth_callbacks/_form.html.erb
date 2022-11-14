@@ -20,7 +20,7 @@
 
   <div class="mb-3">
     <%= form.label :role_name, class: "col-sm-2 col-form-label" %>
-    <%= form.select :role_id, Role.unprivileged.order(:name).map { |role| [role.name, role.id] }, include_blank: false, id: "id_of_the_role_id_select_box" %>
+    <%= form.select :role_id, Role.unprivileged.order(:name).map { |role| [role.name, role.id] }, include_blank: false, id: "id_of_the_role_id_select_box", class: "form-control" %>
   </div>
 
   <div class="row gx-3 mb-3">
@@ -31,14 +31,14 @@
     </div>
     <!-- Form Group (last name)-->
     <div class="col-md-6">
-      <%= form.label :first_name, class: "small mb-1 col-form-label" %>
-      <%= form.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+      <%= form.label :last_name, class: "small mb-1 col-form-label" %>
+      <%= form.text_field :last_name, placeholder: "First Name", class: "form-control" %>
     </div>
   </div>
 
   <div class="mb-3">
     <%= form.label :major_name, class: "col-sm-2 col-form-label" %>
-    <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box" %>
+    <%= form.select :major_id, Major.order(:name).map { |major| [major.name, major.id] }, include_blank: false, id: "id_of_the_major_id_select_box", class: "form-control" %>
   </div>
 
   <div class="row gx-3 mb-3">
