@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Role name</th>
       <th>First name</th>
       <th>Last name</th>
+      <th>Role</th>
       <th>Major</th>
       <th>Graduation year</th>
       <th>Email</th>
@@ -19,10 +19,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.role.name %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td><%= user.major.name %></td>
+        <td><%= user.role.name %></td>
+        <td><%= user.major_name_if_present %></td>
         <td><%= user.graduation_year %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
@@ -35,5 +35,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'Create New User', new_user_path %>
+<br>
+<%= link_to 'Admin Approvals', admin_index_path %>

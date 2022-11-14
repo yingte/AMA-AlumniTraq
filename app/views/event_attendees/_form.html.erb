@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :event_id %>
-    <%= form.number_field :event_id %>
+    <%= form.label :meeting_id %>
+    <!-- Changed meeting_id to meeting_name -->
+    <%= form.select :meeting_id, Meeting.order(:start_time).map { |meeting| [meeting.name, meeting.id] }, include_blank: false, id: "id_of_the_meeting_id_select_box" %>
   </div>
 
   <div class="field">
+    <!-- Change the ID to a dropdown -->
     <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.select :user_id, User.order(:last_name).map { |user| [user.first_name + " " + user.last_name + " - " + String(user.graduation_year), user.id] }, include_blank: false, id: "id_of_the_user_id_select_box" %>
   </div>
 
   <div class="actions">

@@ -15,7 +15,7 @@
   <tbody>
     <% @media_handles.each do |media_handle| %>
       <tr>
-        <td><%= media_handle.alumnus_id %></td>
+        <td><%= media_handle.alumnus.user.first_name %> <%= media_handle.alumnus.user.last_name %></td>
         <td><%= media_handle.platform %></td>
         <td><%= media_handle.link %></td>
         <td><%= link_to 'Show', media_handle %></td>
@@ -29,3 +29,5 @@
 <br>
 
 <%= link_to 'New Media Handle', new_media_handle_path %>
+<br>
+<%= link_to 'Back', Current.previous_path %>
